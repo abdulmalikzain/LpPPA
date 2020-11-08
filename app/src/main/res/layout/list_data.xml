@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_list">
+        <TextView
+            android:id="@+id/tv_perkembangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIDIK"
+            android:textColor="@color/White"
+            android:textSize="10pt"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical"
+        android:id="@+id/ll_listdata">
+        <TextView
+            android:id="@+id/tv_ldnolp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LP/B/1/I/2020/Reskrim"
+            android:textStyle="bold"
+            android:textColor="@color/fontBlackEnable"
+            android:textSize="7pt"/>
+        <TextView
+            android:id="@+id/tv_ldpelapor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pelapor"
+            android:textColor="@color/colorThree"/>
+        <TextView
+            android:id="@+id/tv_ldpenyidik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Penyidik"/>
+        <TextView
+            android:id="@+id/tv_ldtahun"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_next"
+        android:layout_gravity="center"/>
+</LinearLayout>
