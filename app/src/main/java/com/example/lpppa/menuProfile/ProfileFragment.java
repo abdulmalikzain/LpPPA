@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +24,7 @@ import com.example.lpppa.adapter.AdapterListTahun;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
 import com.example.lpppa.models.ListTahun;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,8 +41,9 @@ import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
  */
 public class ProfileFragment extends Fragment {
 
-    private TextView tvKeluar;
+    private TextView tvKeluar, tvNama, tvPangkat, tvJabatan;
     private String nrp;
+    private CircleImageView civFoto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,10 +52,15 @@ public class ProfileFragment extends Fragment {
         View view1 = inflater.inflate(R.layout.fragment_profile, container, false);
 
         tvKeluar = view1.findViewById(R.id.tv_keluar);
+        tvNama = view1.findViewById(R.id.tv_namaprofil);
+        tvJabatan = view1.findViewById(R.id.tv_jabatanprofil);
+        tvPangkat = view1.findViewById(R.id.tv_pangkatprofil);
+        civFoto = view1.findViewById(R.id.civ_fotoprofil);
         tvKeluar.setOnClickListener(view -> keluar());
 
         SharedPreferences sharedpreferences = Objects.requireNonNull(getContext()).getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrp = (sharedpreferences.getString("nrp", ""));
+        getDataPenyidik();
         return view1;
     }
     private void keluar() {
@@ -71,17 +79,26 @@ public class ProfileFragment extends Fragment {
 
     private void getDataPenyidik(){
         ApiService mApiService = RetrofitClient.getRetroPenyidik();
-        mApiService.getPenyidik("read","indexsheet").enqueue(new Callback<ResponseBody>() {
+        mApiService.getPenyidik("read","penyidik").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject object = new JSONObject(response.body().string());
-                    JSONArray jsonArray  = object.optJSONArray("indexsheet");
+                    JSONArray jsonArray  = object.optJSONArray("penyidik");
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String indexSheet = jsonObject.optString("sheetnames");
-
+                        String nrpx = jsonObject.optString("nrp");
+                        String nama   = jsonObject.optString("nama");
+                        String pangkat = jsonObject.optString("pangkat");
+                        String jabatan = jsonObject.optString("jabatan");
+                        String foto = jsonObject.optString("foto");
+                        if (nrp.equals(nrpx)){
+                            tvNama.setText(nama);
+                            tvJabatan.setText(jabatan);
+                            tvPangkat.setText(pangkat);
+                            Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
+                        }
 
                     }
 

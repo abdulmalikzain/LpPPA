@@ -15,17 +15,20 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/civ_fotoprofil"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Nama, S.I.K."
             android:textSize="10pt"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:id="@+id/tv_namaprofil"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pangkat"/>
+            android:text="Pangkat"
+            android:id="@+id/tv_pangkatprofil"/>
     </LinearLayout>
 
     <LinearLayout
@@ -39,6 +42,7 @@
             android:text="Jabatan"
             android:layout_margin="10dp"
             android:textSize="8pt"
+            android:id="@+id/tv_jabatanprofil"
             android:textColor="@color/BlackPastel"/>
         <TextView
             android:layout_width="match_parent"
