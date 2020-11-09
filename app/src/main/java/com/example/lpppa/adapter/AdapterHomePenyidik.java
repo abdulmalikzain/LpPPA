@@ -43,10 +43,10 @@ public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidi
         Penyidik penyidik = my_penyidik.get(position);
         holder.tvPangkat.setText(penyidik.getPangkat());
         holder.tvPenyidik.setText(penyidik.getNama());
-        Picasso.get()
-                .load(penyidik.getFoto())
-                .error(R.drawable.user_police)
-                .into(holder.imageView);
+//        Picasso.get()
+//                .load(penyidik.getFoto())
+//                .error(R.drawable.user_police)
+//                .into(holder.imageView);
     }
 
     @Override

@@ -33,12 +33,14 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
+                    android:id="@+id/civ_detailpenyidik"
                     android:src="@drawable/user_police"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Penyidik"
                     android:textStyle="bold"
+                    android:id="@+id/tv_detailnamapenyidik"
                     android:textColor="@color/White"
                     android:textSize="10pt"/>
             </LinearLayout>
@@ -46,19 +48,23 @@
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pangkat"/>
+                android:text="Pangkat"
+                android:id="@+id/tv_detailpangkat"/>
             <TextView
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nrp"/>
+                android:text="Nrp"
+                android:id="@+id/tv_detailnrp"/>
             <TextView
                 android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Telpon"/>
+                android:text="No Telpon"
+                android:id="@+id/tv_detailnotelp"/>
             <TextView
                 android:layout_margin="10dp"
+                android:id="@+id/tv_detailjabatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jabatan"/>

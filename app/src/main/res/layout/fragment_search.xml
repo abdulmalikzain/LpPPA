@@ -38,27 +38,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:text="Tahun"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/tv_tahunpencarian"/>
                 <Spinner
                     android:id="@+id/spinner_tahun"
-                    android:layout_width="40dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Tahun"
                     android:gravity="center"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginLeft="10dp" />
-                <ImageView
-                    android:id="@+id/iv_dropdowntahun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_spinner" />
+                    android:textColor="@color/fontBlackEnable"/>
                 <EditText
+                    android:id="@+id/ed_lpsearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textSize="6pt"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:inputType="text"
                     android:textColor="@color/fontBlackEnable"
                     android:background="@color/White"
@@ -93,7 +93,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:id="@+id/rv_hasilsearch">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

@@ -55,7 +55,6 @@ public class ListTahunActivity extends AppCompatActivity implements SwipeRefresh
 
         Bundle bundle = getIntent().getExtras();
         jenisLaporan     = bundle.getString("jenis");
-        Toast.makeText(this, "oooooooooo"+jenisLaporan, Toast.LENGTH_SHORT).show();
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -121,6 +120,5 @@ public class ListTahunActivity extends AppCompatActivity implements SwipeRefresh
     public void onRefresh() {
         tahunList.clear();
         getData();
-//        Toast.makeText(this, "total:"+count, Toast.LENGTH_SHORT).show();
     }
 }
