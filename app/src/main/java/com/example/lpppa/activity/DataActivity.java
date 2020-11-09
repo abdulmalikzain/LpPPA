@@ -57,6 +57,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
         Bundle bundle = getIntent().getExtras();
         tahun  = bundle.getString("tahun");
         jenisLaporan     = bundle.getString("jenis");
+
         Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
         itemLists = new ArrayList<>();
         LinearLayoutManager layoutManager
@@ -112,9 +113,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
 
                     }
                     refreshLayout.setRefreshing(false);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -128,11 +127,8 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     @Override
     public void onRefresh() {
+        itemLists.clear();
         getData();
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 }

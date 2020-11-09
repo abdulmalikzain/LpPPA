@@ -163,6 +163,7 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_homekdrt"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_weight="1"
@@ -172,15 +173,16 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        android:src="@drawable/icon_menulimpah"/>
+                        android:src="@drawable/icon_menukdrt"/>
                     <TextView
                         android:layout_marginTop="5dp"
-                        android:text="Limpah Aduan"
+                        android:text="KDRT"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_homeanak"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_weight="1"
@@ -190,32 +192,15 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        android:src="@drawable/icon_menuaduan"/>
+                        android:src="@drawable/icon_menuanak"/>
                     <TextView
                         android:layout_marginTop="5dp"
-                        android:text="Aduan/Rekom"
+                        android:text="Tindak Pidana thd anak"
                         android:gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:padding="10dp"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:src="@drawable/icon_menuuud"/>
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:text="Undang Undang"
-                        android:gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
+
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -246,12 +231,13 @@
                         android:layout_gravity="end"/>
                 </LinearLayout>
                 <RelativeLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     >
                     <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
                         android:id="@+id/rv_homepenyidik"/>
                     <com.wang.avi.AVLoadingIndicatorView
                         android:id="@+id/av_homepenyidik"
@@ -271,10 +257,6 @@
                     android:layout_height="170dp"
                     android:background="@color/White"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="aaa"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

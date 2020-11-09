@@ -18,8 +18,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.lpppa.R;
+import com.example.lpppa.activity.KdrtActivity;
 import com.example.lpppa.activity.ListTahunActivity;
 import com.example.lpppa.activity.PenyidikActivity;
+import com.example.lpppa.activity.PidanaAnakActivity;
 import com.example.lpppa.activity.UUActivity;
 import com.example.lpppa.adapter.AdapterHomePenyidik;
 import com.example.lpppa.api.ApiService;
@@ -40,7 +42,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
 
 public class HomeFragment extends Fragment {
-    private LinearLayout llpenyidik, llu, llLp, llAduan, llLimpah;
+    private LinearLayout llpenyidik, llu, llLp, llAduan, llLimpah, llanak, llkdrt;
     private RecyclerView Rvpenyidik;
     private AVLoadingIndicatorView loadingIndicatorView;
     private TextView tvLihatsemua;
@@ -68,6 +70,8 @@ public class HomeFragment extends Fragment {
         llLp = view1.findViewById(R.id.ll_homelp);
         llAduan = view1.findViewById(R.id.ll_homeaduan);
         llLimpah = view1.findViewById(R.id.ll_homelimpah);
+        llanak = view1.findViewById(R.id.ll_homeanak);
+        llkdrt = view1.findViewById(R.id.ll_homekdrt);
 
         SharedPreferences sharedpreferences = Objects.requireNonNull(getContext()).getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrp = (sharedpreferences.getString("nrp", ""));
@@ -101,7 +105,10 @@ public class HomeFragment extends Fragment {
             intent.putExtra("jenis", Limpah); startActivity(intent);});
         llAduan.setOnClickListener(view -> {Intent intent = new Intent(getContext(), ListTahunActivity.class);
             intent.putExtra("jenis", Aduan); startActivity(intent);});
-
+        llkdrt.setOnClickListener(view -> {Intent intent = new Intent(getContext(), KdrtActivity.class);
+            startActivity(intent);});
+        llanak.setOnClickListener(view -> {Intent intent = new Intent(getContext(), PidanaAnakActivity.class);
+            startActivity(intent);});
         getPenyidik();
     }
 
@@ -149,6 +156,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         });
     }

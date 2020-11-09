@@ -97,7 +97,7 @@ public class ProfileFragment extends Fragment {
                             tvNama.setText(nama);
                             tvJabatan.setText(jabatan);
                             tvPangkat.setText(pangkat);
-                            Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
+//                            Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
                         }
 
                     }

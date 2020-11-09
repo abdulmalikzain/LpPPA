@@ -38,27 +38,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:text="Tahun"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/tv_tahunpencarian"/>
-                <Spinner
-                    android:id="@+id/spinner_tahun"
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Tahun"
+                    android:hint="Tahun"
+                    android:textSize="6pt"
+                    android:textColor="@color/fontBlackEnable"
+                    android:background="@color/White"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/ed_tahunpencarian"/>
+                <ImageView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/BlackPastel"
                     android:gravity="center"
-                    android:textColor="@color/fontBlackEnable"/>
+                    android:layout_margin="5dp"/>
+<!--                <Spinner-->
+<!--                    android:id="@+id/spinner_tahun"-->
+<!--                    android:layout_width="20dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:text="Tahun"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textColor="@color/fontBlackEnable"/>-->
                 <EditText
                     android:id="@+id/ed_lpsearch"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textSize="6pt"
-                    android:layout_marginLeft="5dp"
                     android:inputType="text"
                     android:textColor="@color/fontBlackEnable"
                     android:background="@color/White"
@@ -90,13 +98,19 @@
             android:textStyle="bold"
             android:textColor="@color/fontBlackEnable"
             android:textSize="9pt"/>
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:id="@+id/rv_hasilsearch">
+            android:id="@+id/swipe_pencarian">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:id="@+id/rv_hasilsearch"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

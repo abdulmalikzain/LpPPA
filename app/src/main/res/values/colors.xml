@@ -7,4 +7,5 @@
     <color name="Grey">#F4F4F4</color>
     <color name="White">#FFFFFF</color>
     <color name="colorThree">#A60000</color>
+    <color name="fontBlackEnable">#000000</color>
 </resources>

@@ -68,7 +68,7 @@ public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidi
             llItemPenyidik.setOnClickListener(v -> {
                 post = getAdapterPosition();
                 Intent intent = new Intent(context, DetailPenyidikActivity.class);
-//                intent.putExtra("nrp", tvNrp.getText().toString().trim());
+                intent.putExtra("nrp", tvNrp.getText().toString().trim());
                 context.startActivity(intent);
             });
         }

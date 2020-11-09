@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.lpppa.R;
@@ -50,14 +52,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class SearchFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private ImageView ivCari;
     private TextView tvTahun;
     private String item;
-    private EditText edNolp;
+    private EditText edNolp, edtahun;
     private List<ItemList> itemLists;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout refreshLayout;
 
     private Spinner spinner;
 
@@ -70,83 +73,67 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
         ivCari = view.findViewById(R.id.iv_cari);
         edNolp = view.findViewById(R.id.ed_lpsearch);
         recyclerView = view.findViewById(R.id.rv_hasilsearch);
-        spinner = view.findViewById(R.id.spinner_tahun);
+        edtahun = view.findViewById(R.id.ed_tahunpencarian);
+        refreshLayout = view.findViewById(R.id.swipe_pencarian);
 
-//        categories.add("Automobile");
-//        categories.add("Business Services");
-//        categories.add("Computers");
-//        categories.add("Education");
-//        categories.add("Personal");
-//        categories.add("Travel");
-        // Spinner click listener
-        getTahun();
-
-        spinner.setOnItemSelectedListener(this);
-
+//        getTahun();
 
         ivCari.setOnClickListener(view1 -> {getDataLp();});
         itemLists = new ArrayList<>();
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        refreshLayout.setColorSchemeResources(R.color.colorPrimaryDark,R.color.colorPrimary);
+        refreshLayout.setOnRefreshListener(this);
 
         return view;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        item = adapterView.getItemAtPosition(i).toString();
-        tvTahun.setText(item);
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-
-    private void getTahun(){
-        ApiService mApiService = RetrofitClient.getRetroPenyidik();
-        mApiService.getPenyidik("read","indexsheet").enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    JSONObject object = new JSONObject(response.body().string());
-                    JSONArray jsonArray  = object.optJSONArray("indexsheet");
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String indexSheet = jsonObject.optString("sheetnames");
-
-                        List<String> categories = new ArrayList<>();
-                        categories.add(indexSheet);
-
-                        // Creating adapter for spinner
-                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-                                android.R.layout.simple_spinner_item, categories);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        spinner.setAdapter(dataAdapter);
-
-                    }
-                } catch (JSONException | IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-            }
-        });
-    }
+//    private void getTahun(){
+//        ApiService mApiService = RetrofitClient.getRetroPenyidik();
+//        mApiService.getPenyidik("read","indexsheet").enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                try {
+//                    JSONObject object = new JSONObject(response.body().string());
+//                    JSONArray jsonArray  = object.optJSONArray("indexsheet");
+//
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+//                        String indexSheet = jsonObject.optString("sheetnames");
+//
+//                        List<String> categories = new ArrayList<>();
+//                        categories.add(indexSheet);
+//
+//                        // Creating adapter for spinner
+//                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+//                                android.R.layout.simple_spinner_item, categories);
+//                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                        spinner.setAdapter(dataAdapter);
+//
+//                    }
+//                } catch (JSONException | IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//            }
+//        });
+//    }
 
     private void getDataLp(){
+        refreshLayout.setRefreshing(true);
         ApiService mApiService = RetrofitClient.getRetroData();
-        mApiService.getPenyidik("read",item).enqueue(new Callback<ResponseBody>() {
+        mApiService.getPenyidik("read",edtahun.getText().toString()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject object = new JSONObject(response.body().string());
-                    JSONArray jsonArray  = object.optJSONArray(item);
+                    JSONArray jsonArray  = object.optJSONArray(edtahun.getText().toString());
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -165,21 +152,27 @@ public class SearchFragment extends Fragment implements AdapterView.OnItemSelect
                             itemLists.add(list);
                             AdapterData adapterData = new AdapterData(getContext(), itemLists);
                             recyclerView.setAdapter(adapterData);
+                        }else {
+                            Toast.makeText(getContext(), "No LP tidak ditemukan", Toast.LENGTH_SHORT).show();
                         }
 
                     }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                    refreshLayout.setRefreshing(false);
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                refreshLayout.setRefreshing(false);
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        itemLists.clear();
+        getDataLp();
     }
 }
