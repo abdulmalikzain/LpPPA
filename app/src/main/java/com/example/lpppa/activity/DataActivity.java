@@ -57,7 +57,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
         Bundle bundle = getIntent().getExtras();
         tahun  = bundle.getString("tahun");
         jenisLaporan     = bundle.getString("jenis");
-
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
         itemLists = new ArrayList<>();
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
