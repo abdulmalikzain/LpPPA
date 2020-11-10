@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.EditPerkembanganActivity"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White"
+        android:id="@+id/toolbar_editperkembangan"/>
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Perkembanganan Penanganan kasus pada"/>
+    <TextView
+        android:id="@+id/tv_editlpperkembangan"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/fontBlackEnable"
+        android:text="LP/B/1/I/2020/JATENG/"/>
+    <EditText
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:hint="S I D I K"
+        android:textAlignment="center"
+        android:textSize="12pt"
+        android:id="@+id/et_perkembangan"
+        android:textColor="@color/BlackPastel"
+        android:textStyle="bold"/>
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:text="S I M P A N"
+        android:textSize="8pt"
+        android:id="@+id/btn_editperkembangan"
+        android:background="@color/colorPrimary"/>
+
+</LinearLayout>

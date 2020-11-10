@@ -20,4 +20,14 @@ public class ListTahun {
 
     private String JenisLaporan;
     private String Tahun;
+
+    public String getKdrt() {
+        return Kdrt;
+    }
+
+    public void setKdrt(String kdrt) {
+        Kdrt = kdrt;
+    }
+
+    private String Kdrt;
 }

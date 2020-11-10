@@ -84,7 +84,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
     private void getData(){
         refreshLayout.setRefreshing(true);
         ApiService mApiService = RetrofitClient.getRetroData();
-        mApiService.getPenyidik("read",tahun).enqueue(new Callback<ResponseBody>() {
+        mApiService.getData("read",tahun).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {

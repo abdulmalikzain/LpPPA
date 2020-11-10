@@ -43,4 +43,14 @@ public class RetrofitClient {
     public static ApiService getRetroData(){
         return getAllData().create(ApiService.class);
     }
+
+    public static Retrofit updatePerkembangan(){
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_Data)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit;
+    }
+    public static ApiService updateRetroPerkembangan(){
+        return updatePerkembangan().create(ApiService.class);
+    }
 }

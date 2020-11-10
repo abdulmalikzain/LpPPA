@@ -1,12 +1,17 @@
 package com.example.lpppa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lpppa.R;
@@ -26,6 +31,8 @@ public class DetailDataActivity extends AppCompatActivity {
     alamatPelapor, namaKorban, jenisKelKorban, alamatKorban, namaTerlapor, alamatTerlapor,
     jenisKelTerlapor;
     private String tahun, nolp;
+    private Button btnEdit;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +42,24 @@ public class DetailDataActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         tahun  = bundle.getString("tahun");
         nolp   = bundle.getString("nolp");
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Detail LP");
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
+
+    //button back toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void inisiasi(){
         noLp = findViewById(R.id.tv_ddlp);
@@ -45,20 +69,30 @@ public class DetailDataActivity extends AppCompatActivity {
         penyidik = findViewById(R.id.tv_ddpenyidik);
         namaPelapor = findViewById(R.id.tv_ddnamapelapor);
         jenisKelPelapor = findViewById(R.id.tv_ddjeniskelpelapor);
-        alamatPelapor = findViewById(R.id.tv_ddlp);
-        namaKorban = findViewById(R.id.tv_ddlp);
-        alamatKorban = findViewById(R.id.tv_ddlp);
-        jenisKelKorban = findViewById(R.id.tv_ddlp);
-        namaTerlapor = findViewById(R.id.tv_ddlp);
-        alamatTerlapor = findViewById(R.id.tv_ddlp);
-        jenisKelTerlapor = findViewById(R.id.tv_ddlp);
+        alamatPelapor = findViewById(R.id.tv_ddalamatpelapor);
+        namaKorban = findViewById(R.id.tv_ddnamakorban);
+        alamatKorban = findViewById(R.id.tv_ddalamatkorban);
+        jenisKelKorban = findViewById(R.id.tv_ddjeniskelkorban);
+        namaTerlapor = findViewById(R.id.tv_ddnamaterlapor);
+        alamatTerlapor = findViewById(R.id.tv_ddalamatterlapor);
+        jenisKelTerlapor = findViewById(R.id.tv_ddjeniskelterlapor);
+        btnEdit = findViewById(R.id.btn_editLP);
+        toolbar = findViewById(R.id.toolbar_detaildata);
+
+        btnEdit.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EditPerkembanganActivity.class);
+            intent.putExtra("nolp", nolp);
+            intent.putExtra("perkembangan", (Parcelable) perkembangan);
+            intent.putExtra("tahun", tahun);
+            startActivity(intent);
+        });
 
         getData();
     }
 
     private void getData(){
         ApiService mApiService = RetrofitClient.getRetroData();
-        mApiService.getPenyidik("read",tahun).enqueue(new Callback<ResponseBody>() {
+        mApiService.getData("read",tahun).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {

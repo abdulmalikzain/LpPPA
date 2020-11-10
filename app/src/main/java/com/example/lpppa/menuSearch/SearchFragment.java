@@ -1,8 +1,6 @@
 
 package com.example.lpppa.menuSearch;
 
-import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,44 +11,26 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
 import com.example.lpppa.R;
-import com.example.lpppa.activity.DataActivity;
-import com.example.lpppa.activity.ListTahunActivity;
 import com.example.lpppa.adapter.AdapterData;
 import com.example.lpppa.adapter.AdapterListTahun;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
 import com.example.lpppa.models.ItemList;
-import com.example.lpppa.models.ListTahun;
-import com.squareup.picasso.Picasso;
-import com.whiteelephant.monthpicker.MonthPickerDialog;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
@@ -128,7 +108,7 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private void getDataLp(){
         refreshLayout.setRefreshing(true);
         ApiService mApiService = RetrofitClient.getRetroData();
-        mApiService.getPenyidik("read",edtahun.getText().toString()).enqueue(new Callback<ResponseBody>() {
+        mApiService.getData("read",edtahun.getText().toString()).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
