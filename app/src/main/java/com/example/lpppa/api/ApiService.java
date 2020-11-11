@@ -24,4 +24,11 @@ public interface ApiService {
                                           @Query("sheetName") String sheetName,
                                           @Query("Nomor") String noLP,
                                           @Query("Perkembangan") String perkembangan);
+
+    @POST("exec")
+    Call<ResponseBody> updatePenyidik(@Query("action") String action,
+                                          @Query("sheetName") String sheetName,
+                                          @Query("nrp") String nrp,
+                                          @Query("pangkat") String pangkat,
+                                      @Query("jabatan") String jabatan);
 }

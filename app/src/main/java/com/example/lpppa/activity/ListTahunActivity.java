@@ -2,6 +2,7 @@ package com.example.lpppa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -56,9 +57,9 @@ public class ListTahunActivity extends AppCompatActivity implements SwipeRefresh
         Bundle bundle = getIntent().getExtras();
         jenisLaporan     = bundle.getString("jenis");
 
-        LinearLayoutManager layoutManager
-                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(ListTahunActivity.this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
 
         tahunList = new ArrayList<>();
         refreshLayout.setColorSchemeResources(R.color.colorPrimaryDark,R.color.colorPrimary);
