@@ -13,6 +13,7 @@ import android.os.Parcelable;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.lpppa.R;
 import com.example.lpppa.adapter.AdapterData;
@@ -30,7 +31,7 @@ public class DetailDataActivity extends AppCompatActivity {
     private TextView noLp, perkembangan, tanggal, uu, penyidik, namaPelapor, jenisKelPelapor,
     alamatPelapor, namaKorban, jenisKelKorban, alamatKorban, namaTerlapor, alamatTerlapor,
     jenisKelTerlapor;
-    private String tahun, nolp;
+    private String tahun, nolp, perkembanganx;
     private Button btnEdit;
     private Toolbar toolbar;
 
@@ -38,7 +39,8 @@ public class DetailDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_data);
-        inisiasi();
+        toolbar = findViewById(R.id.toolbar_detaildata);
+
         Bundle bundle = getIntent().getExtras();
         tahun  = bundle.getString("tahun");
         nolp   = bundle.getString("nolp");
@@ -50,6 +52,8 @@ public class DetailDataActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        inisiasi();
     }
 
     //button back toolbar
@@ -63,7 +67,7 @@ public class DetailDataActivity extends AppCompatActivity {
 
     private void inisiasi(){
         noLp = findViewById(R.id.tv_ddlp);
-        perkembangan = findViewById(R.id.tv_perkembangan);
+        perkembangan = findViewById(R.id.tv_ddperkembangan);
         tanggal = findViewById(R.id.tv_ddtanggal);
         uu = findViewById(R.id.tv_ddpasal);
         penyidik = findViewById(R.id.tv_ddpenyidik);
@@ -77,12 +81,12 @@ public class DetailDataActivity extends AppCompatActivity {
         alamatTerlapor = findViewById(R.id.tv_ddalamatterlapor);
         jenisKelTerlapor = findViewById(R.id.tv_ddjeniskelterlapor);
         btnEdit = findViewById(R.id.btn_editLP);
-        toolbar = findViewById(R.id.toolbar_detaildata);
+
 
         btnEdit.setOnClickListener(view -> {
             Intent intent = new Intent(this, EditPerkembanganActivity.class);
             intent.putExtra("nolp", nolp);
-            intent.putExtra("perkembangan", (Parcelable) perkembangan);
+            intent.putExtra("perkembangan", perkembanganx);
             intent.putExtra("tahun", tahun);
             startActivity(intent);
         });
@@ -102,7 +106,7 @@ public class DetailDataActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String noLpx = jsonObject.optString("Nomor");
-                        String perkembanganx = jsonObject.optString("Perkembangan");
+                        perkembanganx = jsonObject.optString("Perkembangan");
                         String pelaporx = jsonObject.optString("NamaP");
                         String penyidikx = jsonObject.optString("Penyidik");
                         String alamatPelaporx = jsonObject.optString("AlamatP");

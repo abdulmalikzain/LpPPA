@@ -58,7 +58,6 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
         tahun  = bundle.getString("tahun");
         jenisLaporan     = bundle.getString("jenis");
 
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
         itemLists = new ArrayList<>();
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -105,6 +104,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
                             list.setNamapelapor(pelapor);
                             list.setPerkembangan(perkembangan);
                             list.setNamapenyidik(penyidik);
+                            list.setTahun(tahun);
 
                             itemLists.add(list);
                             AdapterData adapterData = new AdapterData(DataActivity.this, itemLists);

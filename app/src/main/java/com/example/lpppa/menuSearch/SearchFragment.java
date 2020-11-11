@@ -132,10 +132,10 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
                             itemLists.add(list);
                             AdapterData adapterData = new AdapterData(getContext(), itemLists);
                             recyclerView.setAdapter(adapterData);
-                        }else {
+                        }else{
                             Toast.makeText(getContext(), "No LP tidak ditemukan", Toast.LENGTH_SHORT).show();
+                            itemLists.clear();
                         }
-
                     }
                     refreshLayout.setRefreshing(false);
                 } catch (JSONException | IOException e) {

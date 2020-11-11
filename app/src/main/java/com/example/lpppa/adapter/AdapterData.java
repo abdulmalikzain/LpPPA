@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.lpppa.R;
+import com.example.lpppa.activity.DetailDataActivity;
 import com.example.lpppa.activity.DetailPenyidikActivity;
 import com.example.lpppa.models.ItemList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class AdapterData extends RecyclerView.Adapter<AdapterData.MyDataViewHold
             llItemData = itemView.findViewById(R.id.ll_listdata);
             llItemData.setOnClickListener(v -> {
                 post = getAdapterPosition();
-                Intent intent = new Intent(context, DetailPenyidikActivity.class);
+                Intent intent = new Intent(context, DetailDataActivity.class);
                 intent.putExtra("nolp", tvNolp.getText().toString().trim());
                 intent.putExtra("tahun", tvTahun.getText().toString().trim());
                 context.startActivity(intent);

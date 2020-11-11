@@ -7,6 +7,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -57,9 +59,10 @@ public class EditPerkembanganActivity extends AppCompatActivity {
         tahun = bundle.getString("tahun");
         tvnolp.setText(nolp);
         editText.setText(perkembangan);
-        Toast.makeText(this, "teesss"+nolp +perkembangan, Toast.LENGTH_SHORT).show();
 
-        updateData();
+        Toast.makeText(this, "teesss"+tahun+nolp +perkembangan, Toast.LENGTH_SHORT).show();
+
+        btnsimpan.setOnClickListener(view -> {updateData();});
     }
 
     //button back toolbar
@@ -71,19 +74,23 @@ public class EditPerkembanganActivity extends AppCompatActivity {
     }
 
     private void updateData(){
-        ApiService mApiService = RetrofitClient.getRetroPenyidik();
-        mApiService.updatePerkembangan("read",tahun,nolp,perkembangan)
+        Toast.makeText(this, ""+tahun+nolp+editText.getText().toString(), Toast.LENGTH_SHORT).show();
+        ApiService mApiService = RetrofitClient.updateRetroPerkembangan();
+        mApiService.updatePerkembangan("update",tahun,nolp,editText.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
-                    JSONObject object = new JSONObject(response.body().string());
-                    String hasil = object.optString("hasil");
-                    Toast.makeText(EditPerkembanganActivity.this, ""+hasil, Toast.LENGTH_SHORT).show();
+//                try {
+//                    JSONObject object = new JSONObject(response.body().string());
+//                    String hasil = object.optString("hasil");
+//                    Toast.makeText(EditPerkembanganActivity.this, ""+hasil, Toast.LENGTH_SHORT).show();
 
-                } catch (JSONException | IOException e) {
-                    e.printStackTrace();
-                }
+//                    Intent intent = new Intent(EditPerkembanganActivity.this, DetailDataActivity.class);
+//                    startActivity(intent);
+
+//                } catch (JSONException | IOException e) {
+//                    e.printStackTrace();
+//                }
             }
 
             @Override
