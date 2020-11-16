@@ -50,7 +50,8 @@ public class HomeFragment extends Fragment {
     private List<Penyidik> penyidiks;
     private String LP = "LP";
     private String Aduan = "SuratAduan";
-    private String Limpah = "Limpah";
+    private String Limpah = "LimpahAduan";
+    private String Rekom = "Rekom";
     private String nrp;
 
     @Override
@@ -100,11 +101,12 @@ public class HomeFragment extends Fragment {
         llLp.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), ListTahunActivity.class);
             intent.putExtra("jenis", LP);
+            intent.putExtra("rekom", Rekom);
             startActivity(intent);});
         llLimpah.setOnClickListener(view -> {Intent intent = new Intent(getContext(), ListTahunActivity.class);
-            intent.putExtra("jenis", Limpah); startActivity(intent);});
+            intent.putExtra("jenis", Limpah); startActivity(intent); intent.putExtra("rekom", Rekom);});
         llAduan.setOnClickListener(view -> {Intent intent = new Intent(getContext(), ListTahunActivity.class);
-            intent.putExtra("jenis", Aduan); startActivity(intent);});
+            intent.putExtra("jenis", Aduan); startActivity(intent); intent.putExtra("rekom", Rekom);});
         llkdrt.setOnClickListener(view -> {Intent intent = new Intent(getContext(), KdrtActivity.class);
             startActivity(intent);});
         llanak.setOnClickListener(view -> {Intent intent = new Intent(getContext(), PidanaAnakActivity.class);
@@ -128,7 +130,7 @@ public class HomeFragment extends Fragment {
                         String nrpx = jsonObject.optString("nrp");
                         String nama   = jsonObject.optString("nama");
                         String pangkat = jsonObject.optString("pangkat");
-                        String foto = jsonObject.optString("foto");
+                        String foto = jsonObject.optString("image");
                         loadingIndicatorView.hide();
 
                         if (nrp.equals(nrpx)){

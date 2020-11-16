@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:gravity="center"
-    android:layout_marginBottom="2dp"
+    android:layout_margin="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -25,6 +25,11 @@
     </androidx.cardview.widget.CardView>
     <TextView
         android:id="@+id/tv_itemaduan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/tv_itemrekom"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="invisible"/>

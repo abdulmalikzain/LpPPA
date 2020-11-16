@@ -37,7 +37,7 @@ public class ListTahunActivity extends AppCompatActivity implements SwipeRefresh
     private List<ListTahun> tahunList;
     private Toolbar toolbar;
     private SwipeRefreshLayout refreshLayout;
-    private String jenisLaporan;
+    private String jenisLaporan, rekom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,7 @@ public class ListTahunActivity extends AppCompatActivity implements SwipeRefresh
 
         Bundle bundle = getIntent().getExtras();
         jenisLaporan     = bundle.getString("jenis");
+        rekom   = bundle.getString("rekom");
 
         recyclerView.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(ListTahunActivity.this, 2);
@@ -96,6 +97,7 @@ public class ListTahunActivity extends AppCompatActivity implements SwipeRefresh
                         ListTahun listTahun = new ListTahun();
                         listTahun.setTahun(indexSheet);
                         listTahun.setJenisLaporan(jenisLaporan);
+                        listTahun.setRekom(rekom);
 
                         tahunList.add(listTahun);
                         AdapterListTahun listTahun1 = new AdapterListTahun(ListTahunActivity.this, tahunList);

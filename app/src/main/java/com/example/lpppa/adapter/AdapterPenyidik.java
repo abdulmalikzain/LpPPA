@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.lpppa.R;
 import com.example.lpppa.activity.DetailPenyidikActivity;
 import com.example.lpppa.models.Penyidik;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AdapterPenyidik extends RecyclerView.Adapter<AdapterPenyidik.MyPenyidikViewHolder> {
     private List<Penyidik> my_penyidik;
     private Context context;
+    private String urlImagedefault = "https://drive.google.com/uc?export=view&id=1x2a7NJnvUZUFdXOeLb_jP0UM0GbdahIF";
 
     public AdapterPenyidik(Context context, List<Penyidik> arraylist) {
         this.my_penyidik = arraylist;
@@ -43,6 +45,12 @@ public class AdapterPenyidik extends RecyclerView.Adapter<AdapterPenyidik.MyPeny
         holder.tvNrp.setText(penyidik.getNrp());
         holder.tvPangkat.setText(penyidik.getPangkat());
         holder.tvPenyidik.setText(penyidik.getNama());
+
+            Picasso.get()
+                    .load(penyidik.getFoto())
+                    .error(R.drawable.user_police)
+                    .into(holder.civFoto);
+
     }
 
     @Override
@@ -61,6 +69,7 @@ public class AdapterPenyidik extends RecyclerView.Adapter<AdapterPenyidik.MyPeny
             tvPenyidik  = itemView.findViewById(R.id.tv_ipPenyidik);
             tvNrp  = itemView.findViewById(R.id.tv_ipNrp);
             tvPangkat  = itemView.findViewById(R.id.tv_ipPangkat);
+            civFoto = itemView.findViewById(R.id.civ_ipFoto);
             llItemPenyidik = itemView.findViewById(R.id.llitempenyidik);
             llItemPenyidik.setOnClickListener(v -> {
                 post = getAdapterPosition();

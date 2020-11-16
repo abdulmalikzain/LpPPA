@@ -17,6 +17,7 @@ import com.example.lpppa.adapter.AdapterPenyidik;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
 import com.example.lpppa.models.Penyidik;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,14 +82,19 @@ public class DetailPenyidikActivity extends AppCompatActivity {
                         String pangkat = jsonObject.optString("pangkat");
                         String jabatan = jsonObject.optString("jabatan");
                         String noTelp = jsonObject.optString("noTelp");
-//                        String foto = jsonObject.optString("harga");
-
+                        String foto = jsonObject.optString("image");
+                        String urlImagedefault = "https://drive.google.com/uc?export=view&id=1x2a7NJnvUZUFdXOeLb_jP0UM0GbdahIF";
                         if (nrp.equals(nrpx)){
                             tvNrp.setText(nrpx);
                             tvPangkat.setText(pangkat);
                             tvJabatan.setText(jabatan);
                             tvNotelp.setText(noTelp);
                             tvNama.setText(nama);
+                            if (foto.equals(urlImagedefault)){
+                                Picasso.get().load(urlImagedefault).error(R.drawable.user_police).into(civPenyidik);
+                            }else {
+                                Picasso.get().load(foto).error(R.drawable.user_police).into(civPenyidik);
+                            }
                         }
 
                     }

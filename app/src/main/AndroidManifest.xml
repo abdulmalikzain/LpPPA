@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/logo_bar"
+        android:icon="@drawable/iconaplikasi"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_bar"
+        android:roundIcon="@drawable/iconaplikasi"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".menuProfile.EditPhotoActivity"></activity>

@@ -91,12 +91,13 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
                         String nrp = jsonObject.optString("nrp");
                         String nama   = jsonObject.optString("nama");
                         String pangkat = jsonObject.optString("pangkat");
-//                        String foto = jsonObject.optString("harga");
+                        String foto = jsonObject.optString("image");
 
                         Penyidik penyidik = new Penyidik();
                         penyidik.setNama(nama);
                         penyidik.setNrp(nrp);
                         penyidik.setPangkat(pangkat);
+                        penyidik.setFoto(foto);
 
                         penyidiks.add(penyidik);
                         AdapterPenyidik penyidik1 = new AdapterPenyidik(PenyidikActivity.this, penyidiks);

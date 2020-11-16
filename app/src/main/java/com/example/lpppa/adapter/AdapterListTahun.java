@@ -51,19 +51,21 @@ public class AdapterListTahun extends RecyclerView.Adapter<AdapterListTahun.MyLi
     }
 
     public class MyListTahunViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvItemtahun, tvAduan;
+        private TextView tvItemtahun, tvAduan, tvRekom;
         private LinearLayout llitemtahun;
         private int post;
         public MyListTahunViewHolder(View itemView) {
             super(itemView);
             tvAduan = itemView.findViewById(R.id.tv_itemaduan);
             tvItemtahun  = itemView.findViewById(R.id.tv_itemtahun);
+            tvRekom  = itemView.findViewById(R.id.tv_itemrekom);
             llitemtahun = itemView.findViewById(R.id.ll_itemtahun);
             llitemtahun.setOnClickListener(v -> {
                 post = getAdapterPosition();
                 Intent intent = new Intent(context, DataActivity.class);
                 intent.putExtra("tahun", tvItemtahun.getText().toString().trim());
                 intent.putExtra("jenis", tvAduan.getText().toString().trim());
+                intent.putExtra("rekom", tvRekom.getText().toString().trim());
                 context.startActivity(intent);
             });
         }

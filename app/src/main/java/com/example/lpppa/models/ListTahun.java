@@ -17,9 +17,17 @@ public class ListTahun {
         JenisLaporan = jenis;
     }
 
+    public String getRekom() {
+        return Rekom;
+    }
+
+    public void setRekom(String rekom) {
+        Rekom = rekom;
+    }
 
     private String JenisLaporan;
     private String Tahun;
+    private String Rekom;
 
     int tahunx;
     int kdrt;

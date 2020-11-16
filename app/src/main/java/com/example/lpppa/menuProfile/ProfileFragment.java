@@ -104,11 +104,17 @@ public class ProfileFragment extends Fragment {
                         String pangkat = jsonObject.optString("pangkat");
                         String jabatan = jsonObject.optString("jabatan");
                         String foto = jsonObject.optString("image");
+                        String urlImagedefault = "https://drive.google.com/uc?export=view&id=1x2a7NJnvUZUFdXOeLb_jP0UM0GbdahIF";
                         if (nrp.equals(nrpx)){
                             tvNama.setText(nama);
                             tvJabatan.setText(jabatan);
                             tvPangkat.setText(pangkat);
-                            Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
+                            if (foto.equals(urlImagedefault)){
+                                Picasso.get().load(urlImagedefault).error(R.drawable.user_police).into(civFoto);
+                            }else {
+                                Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
+                            }
+
                         }
 
                     }

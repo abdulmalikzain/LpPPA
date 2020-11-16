@@ -35,7 +35,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
     private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private String tahun;
-    private String jenisLaporan;
+    private String jenisLaporan, rekom;
     private List<ItemList> itemLists;
 
     @Override
@@ -57,6 +57,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
         Bundle bundle = getIntent().getExtras();
         tahun  = bundle.getString("tahun");
         jenisLaporan     = bundle.getString("jenis");
+        rekom     = bundle.getString("rekom");
 
         itemLists = new ArrayList<>();
         LinearLayoutManager layoutManager
@@ -98,7 +99,7 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
                         String penyidik = jsonObject.optString("Penyidik");
                         String kategori = jsonObject.optString("Kategori");
 
-                        if (jenisLaporan.equals(kategori)){
+                        if (jenisLaporan.equals(kategori) || rekom.equals(kategori)){
                             ItemList list = new ItemList();
                             list.setNoLp(noLp);
                             list.setNamapelapor(pelapor);

@@ -23,6 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidik.MyPenyidikViewHolder> {
     private List<Penyidik> my_penyidik;
     private Context context;
+    private String urlImagedefault = "https://drive.google.com/uc?export=view&id=1x2a7NJnvUZUFdXOeLb_jP0UM0GbdahIF";
 
     public AdapterHomePenyidik(Context context, List<Penyidik> arraylist) {
         this.my_penyidik = arraylist;
@@ -43,10 +44,13 @@ public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidi
         Penyidik penyidik = my_penyidik.get(position);
         holder.tvPangkat.setText(penyidik.getPangkat());
         holder.tvPenyidik.setText(penyidik.getNama());
-//        Picasso.get()
-//                .load(penyidik.getFoto())
-//                .error(R.drawable.user_police)
-//                .into(holder.imageView);
+
+            Picasso.get()
+                    .load(penyidik.getFoto())
+                    .error(R.drawable.user_police)
+                    .into(holder.imageView);
+
+
     }
 
     @Override
