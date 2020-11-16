@@ -22,10 +22,13 @@ import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.lpppa.R;
+import com.example.lpppa.adapter.AdapterPenyidik;
+import com.example.lpppa.adapter.AdapterUU;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
 import com.example.lpppa.models.UndangUndang;
@@ -93,7 +96,9 @@ public class UUActivity extends AppCompatActivity {
                         UndangUndang undang = new UndangUndang();
                         undang.setLink(link);
                         undang.setUu(undangundang);
-
+                        undangs.add(undang);
+                        AdapterUU adapterUU = new AdapterUU(UUActivity.this, undangs);
+                        recyclerView.setAdapter(adapterUU);
                     }
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();

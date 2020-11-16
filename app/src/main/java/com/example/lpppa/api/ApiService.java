@@ -31,4 +31,11 @@ public interface ApiService {
                                           @Query("nrp") String nrp,
                                           @Query("pangkat") String pangkat,
                                       @Query("jabatan") String jabatan);
+
+    @FormUrlEncoded
+    @POST("exec")
+    Call<ResponseBody> editpotoPenyidik(@Query("action") String action,
+                                      @Field("nrp") String id,
+                                        @Field("nama") String nama,
+                                        @Field("image") String image);
 }

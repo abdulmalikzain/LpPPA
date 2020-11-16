@@ -15,6 +15,7 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.lpppa.Login.LoginActivity;
@@ -60,11 +61,21 @@ public class ProfileFragment extends Fragment {
 
         SharedPreferences sharedpreferences = Objects.requireNonNull(getContext()).getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrp = (sharedpreferences.getString("nrp", ""));
+
         getDataPenyidik();
+
+        civFoto.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), EditPhotoActivity.class);
+            intent.putExtra("nrp", nrp);
+            intent.putExtra("nama", tvNama.getText().toString().trim());
+            startActivity(intent);
+        });
+
+
         return view1;
     }
     private void keluar() {
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = Objects.requireNonNull(getContext()).getSharedPreferences(my_shared_preferences, Context.MODE_PRIVATE);
 
                 //Creating editor to store values to shared preferences
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -92,19 +103,17 @@ public class ProfileFragment extends Fragment {
                         String nama   = jsonObject.optString("nama");
                         String pangkat = jsonObject.optString("pangkat");
                         String jabatan = jsonObject.optString("jabatan");
-                        String foto = jsonObject.optString("foto");
+                        String foto = jsonObject.optString("image");
                         if (nrp.equals(nrpx)){
                             tvNama.setText(nama);
                             tvJabatan.setText(jabatan);
                             tvPangkat.setText(pangkat);
-//                            Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
+                            Picasso.get().load(foto).error(R.drawable.user_police).into(civFoto);
                         }
 
                     }
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
             }

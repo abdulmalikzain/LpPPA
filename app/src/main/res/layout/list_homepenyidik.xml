@@ -12,9 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="130dp"
             android:layout_height="100dp"
+            android:layout_gravity="center"
             android:src="@drawable/user_police"
             android:scaleType="centerCrop"
             android:id="@+id/iv_listhome_penyidik"/>
@@ -24,16 +25,15 @@
             android:layout_height="wrap_content"
             android:text="Nama"
             android:textSize="7pt"
+            android:layout_gravity="center"
             android:id="@+id/tv_listhome_nama"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:maxLength="10" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="pangkat"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
             android:id="@+id/tv_listhome_pangkat"/>
     </LinearLayout>
 

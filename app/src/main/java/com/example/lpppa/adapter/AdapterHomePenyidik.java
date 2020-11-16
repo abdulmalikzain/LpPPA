@@ -57,7 +57,7 @@ public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidi
     public class MyPenyidikViewHolder extends RecyclerView.ViewHolder {
         private TextView tvPenyidik,  tvPangkat, tvNrp;
         private int post;
-        private ImageView imageView;
+        private CircleImageView imageView;
         public MyPenyidikViewHolder(View itemView) {
             super(itemView);
 

@@ -21,13 +21,27 @@ public class ListTahun {
     private String JenisLaporan;
     private String Tahun;
 
-    public String getKdrt() {
-        return Kdrt;
+    int tahunx;
+    int kdrt;
+
+    public int getTahunx() {
+        return tahunx;
     }
 
-    public void setKdrt(String kdrt) {
-        Kdrt = kdrt;
+    public void setTahunx(int tahunx) {
+        this.tahunx = tahunx;
     }
 
-    private String Kdrt;
+    public int getKdrt() {
+        return kdrt;
+    }
+
+    public void setKdrt(int kdrt) {
+        this.kdrt = kdrt;
+    }
+//
+//    public ListTahun(int tahunx, int kdrt) {
+//        this.tahunx = tahunx;
+//        this.kdrt = kdrt;
+//    }
 }

@@ -7,34 +7,34 @@
     android:orientation="vertical"
     android:background="@color/Grey"
     tools:context=".activity.DetailDataActivity">
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:id="@+id/toolbar_detaildata"/>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:cardCornerRadius="50dp"
-        android:layout_marginTop="-40dp"
-        app:cardElevation="0dp"
-        android:layout_marginBottom="10dp">
-        <LinearLayout
+        android:layout_height="300dp">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            app:expandedTitleMarginStart="48dp"
+            app:expandedTitleMarginEnd="64dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/bg_bndetail">
+                >
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:layout_collapseMode="pin"
+                    android:id="@+id/toolbar_detaildata"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="LIDIK"
                     android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:textColor="@color/White"
                     android:textSize="12pt"
                     android:id="@+id/tv_ddperkembangan"/>
@@ -43,9 +43,11 @@
                     android:layout_height="wrap_content"
                     android:text="LP/B/1/I/2020/Reskrim"
                     android:textStyle="bold"
+                    android:layout_gravity="center"
                     android:id="@+id/tv_ddlp"
                     android:textSize="8pt"/>
                 <TextView
+                    android:layout_gravity="center"
                     android:id="@+id/tv_ddtanggal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,168 +55,265 @@
                     android:textStyle="bold"
                     />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Pasal"
-                    android:id="@+id/tv_ddpasal"
-                    android:layout_weight="1"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Penyidik"
-                    android:id="@+id/tv_ddpenyidik"
-                    android:layout_weight="1"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Pelapor"
-                    android:textSize="7pt"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="15dp"/>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_margin="4dp"
-                    android:background="@color/Grey"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:id="@+id/tv_ddnamapelapor"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin"
-                    android:id="@+id/tv_ddjeniskelpelapor"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat"
-                    android:id="@+id/tv_ddalamatpelapor"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="@color/Grey"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Korban"
-                    android:textSize="7pt"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="15dp"/>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_margin="4dp"
-                    android:background="@color/Grey"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:id="@+id/tv_ddnamakorban"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin"
-                    android:id="@+id/tv_ddjeniskelkorban"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat"
-                    android:id="@+id/tv_ddalamatkorban"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-            </LinearLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="@color/Grey"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Terlapor"
-                    android:textSize="7pt"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="15dp"/>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_margin="4dp"
-                    android:background="@color/Grey"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama"
-                    android:id="@+id/tv_ddnamaterlapor"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Jenis Kelamin"
-                    android:id="@+id/tv_ddjeniskelterlapor"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alamat"
-                    android:id="@+id/tv_ddalamatterlapor"
-                    android:textColor="@color/fontBlackEnable"
-                    android:layout_marginStart="10dp"/>
-            </LinearLayout>
-        </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-    </androidx.cardview.widget.CardView>
-        <Button
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/custom_button"
-            android:layout_gravity="center"
-            android:text="e d i t"
-            android:textSize="8pt"
-            android:id="@+id/btn_editLP"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_marginBottom="-10dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Pasal"
+                        android:id="@+id/tv_ddpasal"
+                        android:layout_weight="1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Penyidik"
+                        android:id="@+id/tv_ddpenyidik"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Pelapor"
+                        android:textSize="7pt"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="15dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_margin="4dp"
+                        android:background="@color/Grey"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:id="@+id/tv_ddnamapelapor"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Kelamin"
+                        android:id="@+id/tv_ddjeniskelpelapor"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:id="@+id/tv_ddalamatpelapor"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="@color/Grey"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Korban"
+                        android:textSize="7pt"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="15dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_margin="4dp"
+                        android:background="@color/Grey"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:id="@+id/tv_ddnamakorban"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Kelamin"
+                        android:id="@+id/tv_ddjeniskelkorban"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:id="@+id/tv_ddalamatkorban"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="6dp"
+                    android:background="@color/Grey"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Terlapor"
+                        android:textSize="7pt"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="15dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_margin="4dp"
+                        android:background="@color/Grey"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:id="@+id/tv_ddnamaterlapor"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Kelamin"
+                        android:id="@+id/tv_ddjeniskelterlapor"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:id="@+id/tv_ddalamatterlapor"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Terlapor"
+                        android:textSize="7pt"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="15dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_margin="4dp"
+                        android:background="@color/Grey"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Kelamin"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Terlapor"
+                        android:textSize="7pt"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="15dp"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_margin="4dp"
+                        android:background="@color/Grey"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Kelamin"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:textColor="@color/fontBlackEnable"
+                        android:layout_marginStart="10dp"/>
+                </LinearLayout>
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/custom_button"
+                    android:layout_gravity="center"
+                    android:text="e d i t"
+                    android:textSize="8pt"
+                    android:id="@+id/btn_editLP"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginBottom="-10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </LinearLayout>
