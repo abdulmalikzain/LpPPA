@@ -43,8 +43,6 @@ import java.util.List;
 
 public class KdrtActivity extends AppCompatActivity {
 
-    private BarChart barChart;
-    public static List<ListTahun> dataIndikator;
     private LineChart lineChart;
     private AVLoadingIndicatorView indicatorView;
 
@@ -54,7 +52,6 @@ public class KdrtActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kdrt);
         lineChart = findViewById(R.id.chart_bar);
         indicatorView = findViewById(R.id.av_kdrt);
-        dataIndikator = new ArrayList<>();
 
         lineChart.setVisibility(View.INVISIBLE);
         getData();
@@ -76,8 +73,6 @@ public class KdrtActivity extends AppCompatActivity {
                         float indexSheet = Float.parseFloat(jsonObject.optString("sheetnames"));
                         float kdrt = Float.parseFloat(jsonObject.optString("kdrt"));
 
-                        Log.d("kkk", "onResponse: "+indexSheet);
-                        Log.d("jjjjj", "onResponse: "+kdrt);
                         yValues.add(new Entry(indexSheet,kdrt));
                     }
                     linechartx(yValues);
