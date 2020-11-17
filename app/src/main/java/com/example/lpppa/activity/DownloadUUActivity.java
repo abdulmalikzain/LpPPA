@@ -36,6 +36,8 @@ public class DownloadUUActivity extends AppCompatActivity {
         link  = bundle.getString("link");
         cv = bundle.getString("uu");
 
+        tvUU.setText(cv);
+
         cardView.setOnClickListener(view -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                 if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){

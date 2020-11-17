@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/bg_bndetail"
                 android:gravity="center">
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -71,13 +72,32 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-    <Button
+    <LinearLayout
+        android:id="@+id/ll_editpenyidik"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="-60dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:textSize="8pt"
-        android:text="E d i t"
-        android:background="@drawable/custom_button"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-80dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:textSize="8pt"
+            android:id="@+id/btn_editPenyidik"
+            android:textAllCaps="false"
+            android:text="E d i t"
+            android:background="@drawable/custom_button"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textSize="8pt"
+            android:layout_margin="10dp"
+            android:textAllCaps="false"
+            android:text="H a p u s"
+            android:background="@drawable/custom_button"/>
+    </LinearLayout>
+
 </LinearLayout>

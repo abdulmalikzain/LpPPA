@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.lpppa.Login.LoginActivity;
 import com.example.lpppa.R;
+import com.example.lpppa.activity.EditPenyidikActivity;
 import com.example.lpppa.activity.ListTahunActivity;
 import com.example.lpppa.adapter.AdapterListTahun;
 import com.example.lpppa.api.ApiService;
@@ -37,12 +38,9 @@ import java.util.Objects;
 import static android.content.Context.MODE_PRIVATE;
 import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ProfileFragment extends Fragment {
 
-    private TextView tvKeluar, tvNama, tvPangkat, tvJabatan;
+    private TextView tvKeluar, tvNama, tvPangkat, tvJabatan, tveditProfile;
     private String nrp;
     private CircleImageView civFoto;
 
@@ -57,7 +55,8 @@ public class ProfileFragment extends Fragment {
         tvJabatan = view1.findViewById(R.id.tv_jabatanprofil);
         tvPangkat = view1.findViewById(R.id.tv_pangkatprofil);
         civFoto = view1.findViewById(R.id.civ_fotoprofil);
-        tvKeluar.setOnClickListener(view -> keluar());
+        civFoto = view1.findViewById(R.id.civ_fotoprofil);
+        tveditProfile = view1.findViewById(R.id.tv_editprofile);
 
         SharedPreferences sharedpreferences = Objects.requireNonNull(getContext()).getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrp = (sharedpreferences.getString("nrp", ""));
@@ -68,6 +67,11 @@ public class ProfileFragment extends Fragment {
             Intent intent = new Intent(getContext(), EditPhotoActivity.class);
             intent.putExtra("nrp", nrp);
             intent.putExtra("nama", tvNama.getText().toString().trim());
+            startActivity(intent);
+        });
+
+        tveditProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(getContext(), EditPenyidikActivity.class);
             startActivity(intent);
         });
 

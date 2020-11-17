@@ -62,6 +62,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Edit data"
+            android:layout_margin="10dp"
+            android:textSize="8pt"
+            android:id="@+id/tv_editprofile"
+            android:textColor="@color/BlackPastel"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="Versi 1.0"
             android:layout_margin="10dp"
             android:textSize="8pt"

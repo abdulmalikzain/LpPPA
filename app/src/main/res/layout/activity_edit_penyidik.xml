@@ -5,40 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="30dp"
+
     tools:context=".activity.EditPenyidikActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_editpenyidik"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <EditText
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Pangkat"
-        android:backgroundTint="@color/colorPrimaryDark"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Jabatan"
-        android:backgroundTint="@color/colorPrimaryDark"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="No Telepon"
-        android:backgroundTint="@color/colorPrimaryDark"/>
-    <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        app:cardCornerRadius="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Simpan"
-            android:textSize="8pt"
-            android:textColor="@color/fontBlackEnable"
-            android:layout_gravity="center"/>
-    </androidx.cardview.widget.CardView>
+            android:hint="Pangkat"
+            android:backgroundTint="@color/colorPrimaryDark"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jabatan"
+            android:backgroundTint="@color/colorPrimaryDark"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="No Telepon"
+            android:backgroundTint="@color/colorPrimaryDark"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="30dp"
+            android:layout_marginTop="10dp"
+            app:cardElevation="3dp"
+            app:cardBackgroundColor="@color/colorPrimaryDark"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Simpan"
+                android:textSize="9pt"
+                android:textStyle="bold"
+                android:textColor="@color/White"
+                android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
 
 </LinearLayout>

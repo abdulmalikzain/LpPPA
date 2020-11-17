@@ -8,8 +8,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lpppa.R;
@@ -30,6 +32,7 @@ public class DetailPenyidikActivity extends AppCompatActivity {
     private String nrp;
     private Toolbar toolbar;
     private TextView tvNama, tvNrp, tvJabatan, tvPangkat, tvNotelp;
+    private Button btnEdit;
     private CircleImageView civPenyidik;
 
     @Override
@@ -43,6 +46,7 @@ public class DetailPenyidikActivity extends AppCompatActivity {
         tvNama = findViewById(R.id.tv_detailnamapenyidik);
         civPenyidik = findViewById(R.id.civ_detailpenyidik);
         toolbar = findViewById(R.id.toolbar_detailpenyidik);
+        btnEdit = findViewById(R.id.btn_editPenyidik);
 
         Bundle bundle = getIntent().getExtras();
         nrp  = bundle.getString("nrp");
@@ -56,6 +60,11 @@ public class DetailPenyidikActivity extends AppCompatActivity {
         }
 
         getData();
+
+        btnEdit.setOnClickListener(view -> {
+            Intent intent = new Intent(this, EditPenyidikActivity.class);
+            startActivity(intent);
+        });
     }
 
     //button back toolbar

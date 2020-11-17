@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.lpppa.R;
 import com.example.lpppa.activity.DetailDataActivity;
+import com.example.lpppa.activity.DownloadUUActivity;
 import com.example.lpppa.models.ItemList;
 import com.example.lpppa.models.UndangUndang;
 
@@ -60,7 +61,7 @@ public class AdapterUU extends RecyclerView.Adapter<AdapterUU.MyUUViewHolder> {
             btndownload = itemView.findViewById(R.id.btn_listdownloaduu);
             btndownload.setOnClickListener(v -> {
                 post = getAdapterPosition();
-                Intent intent = new Intent(context, DetailDataActivity.class);
+                Intent intent = new Intent(context, DownloadUUActivity.class);
                 intent.putExtra("link", link.getText().toString().trim());
                 intent.putExtra("uu", Uu.getText().toString());
                 context.startActivity(intent);
