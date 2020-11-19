@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     tools:context=".activity.EditPenyidikActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_editpenyidik"
@@ -20,17 +19,26 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Nama"
+            android:id="@+id/et_editnama"
+            android:backgroundTint="@color/colorPrimaryDark"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Pangkat"
+            android:id="@+id/et_editpangkat"
             android:backgroundTint="@color/colorPrimaryDark"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Jabatan"
+            android:id="@+id/et_editjabatan"
             android:backgroundTint="@color/colorPrimaryDark"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="No Telepon"
+            android:hint="No Telpon"
+            android:id="@+id/et_editnotelpon"
             android:backgroundTint="@color/colorPrimaryDark"/>
         <androidx.cardview.widget.CardView
             android:layout_width="350dp"
@@ -38,6 +46,7 @@
             app:cardCornerRadius="30dp"
             android:layout_marginTop="10dp"
             app:cardElevation="3dp"
+            android:id="@+id/cv_simpaneditpny"
             app:cardBackgroundColor="@color/colorPrimaryDark"
             android:layout_gravity="center">
             <TextView

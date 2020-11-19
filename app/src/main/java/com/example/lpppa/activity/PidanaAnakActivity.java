@@ -9,6 +9,7 @@ import retrofit2.Response;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.lpppa.R;
@@ -55,7 +56,23 @@ public class PidanaAnakActivity extends AppCompatActivity {
         persetubuhanChart.setVisibility(View.INVISIBLE);
         cabulChart.setVisibility(View.INVISIBLE);
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Grafik");
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         getData();
+    }
+
+    //button back toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void getData(){

@@ -1,6 +1,7 @@
 package com.example.lpppa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -9,6 +10,7 @@ import retrofit2.Response;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.lpppa.R;
@@ -45,6 +47,7 @@ public class KdrtActivity extends AppCompatActivity {
 
     private LineChart lineChart;
     private AVLoadingIndicatorView indicatorView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +55,28 @@ public class KdrtActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kdrt);
         lineChart = findViewById(R.id.chart_bar);
         indicatorView = findViewById(R.id.av_kdrt);
+        toolbar = findViewById(R.id.toolbar_kdrt);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Grafik");
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        getData();
 
         lineChart.setVisibility(View.INVISIBLE);
         getData();
+    }
+
+    //button back toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void getData(){

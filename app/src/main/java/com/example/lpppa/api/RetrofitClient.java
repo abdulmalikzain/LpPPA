@@ -16,20 +16,19 @@ public class RetrofitClient {
                 .build();
         return retrofit;
     }
-
     public static ApiService getRetroPenyidik(){
             return getPenyidik().create(ApiService.class);
     }
 
-    public static Retrofit getPencarian(){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_PENYIDIK)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        return retrofit;
-    }
-    public static ApiService getRetroPencarian(){
-        return getPencarian().create(ApiService.class);
-    }
+//    public static Retrofit getPencarian(){
+//        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_Data)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//        return retrofit;
+//    }
+//    public static ApiService getRetroPencarian(){
+//        return getPencarian().create(ApiService.class);
+//    }
 
     public static Retrofit getAllData(){
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_Data)
@@ -52,7 +51,7 @@ public class RetrofitClient {
     }
 
     public static Retrofit updatePenyidik(){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_Data)
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_PENYIDIK)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit;

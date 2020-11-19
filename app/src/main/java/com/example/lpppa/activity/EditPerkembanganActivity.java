@@ -74,23 +74,12 @@ public class EditPerkembanganActivity extends AppCompatActivity {
     }
 
     private void updateData(){
-        Toast.makeText(this, ""+tahun+nolp+editText.getText().toString(), Toast.LENGTH_SHORT).show();
         ApiService mApiService = RetrofitClient.updateRetroPerkembangan();
         mApiService.updatePerkembangan("update",tahun,nolp,editText.getText().toString())
                 .enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    JSONObject object = new JSONObject(response.body().string());
-//                    String hasil = object.optString("hasil");
-//                    Toast.makeText(EditPerkembanganActivity.this, ""+hasil, Toast.LENGTH_SHORT).show();
-
-//                    Intent intent = new Intent(EditPerkembanganActivity.this, DetailDataActivity.class);
-//                    startActivity(intent);
-
-//                } catch (JSONException | IOException e) {
-//                    e.printStackTrace();
-//                }
+                Toast.makeText(EditPerkembanganActivity.this, "Perkembangan berhasil di ubah", Toast.LENGTH_SHORT).show();
             }
 
             @Override

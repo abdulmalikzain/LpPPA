@@ -54,7 +54,7 @@ public class DownloadUUActivity extends AppCompatActivity {
 
     private void download(){
 //        String url = "https://drive.google.com/file/d/1B9_5QovYedIhXnHi1VL3-VoNKdCAFTsC/view?usp=sharing";
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(link));
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://"+link));
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
         request.setTitle("Download");
         request.setDescription("Downloading file...");

@@ -55,7 +55,7 @@ public class UUActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_uu);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Data LP");
+        getSupportActionBar().setTitle("Undang Undang");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

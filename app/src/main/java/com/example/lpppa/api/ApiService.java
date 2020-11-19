@@ -27,10 +27,12 @@ public interface ApiService {
 
     @POST("exec")
     Call<ResponseBody> updatePenyidik(@Query("action") String action,
-                                          @Query("sheetName") String sheetName,
-                                          @Query("nrp") String nrp,
-                                          @Query("pangkat") String pangkat,
-                                      @Query("jabatan") String jabatan);
+                                      @Query("sheetName") String sheetName,
+                                      @Query("nrp") String nrp,
+                                      @Query("nama") String nama,
+                                      @Query("pangkat") String pangkat,
+                                      @Query("jabatan") String jabatan,
+                                      @Query("notelpon") String notelpon);
 
     @FormUrlEncoded
     @POST("exec")

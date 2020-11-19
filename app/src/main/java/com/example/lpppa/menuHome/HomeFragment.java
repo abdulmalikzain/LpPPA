@@ -49,8 +49,8 @@ public class HomeFragment extends Fragment {
     private TextView tvnamaPenyidik;
     private List<Penyidik> penyidiks;
     private String LP = "LP";
-    private String Aduan = "SuratAduan";
-    private String Limpah = "LimpahAduan";
+    private String Aduan = "SuratPengaduan";
+    private String Limpah = "LimpahPengaduan";
     private String Rekom = "Rekom";
     private String nrp;
 

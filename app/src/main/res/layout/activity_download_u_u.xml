@@ -8,10 +8,11 @@
     android:gravity="center"
     tools:context=".activity.DownloadUUActivity">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="undang undang"
         android:textSize="10pt"
+        android:gravity="center"
         android:textColor="@color/fontBlackEnable"
         android:id="@+id/tv_downloaduu"/>
     <androidx.cardview.widget.CardView

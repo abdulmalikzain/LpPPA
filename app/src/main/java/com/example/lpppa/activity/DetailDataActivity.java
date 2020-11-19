@@ -2,6 +2,9 @@ package com.example.lpppa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -11,7 +14,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +36,13 @@ import java.io.IOException;
 public class DetailDataActivity extends AppCompatActivity {
     private TextView noLp, perkembangan, tanggal, uu, penyidik, namaPelapor, jenisKelPelapor,
     alamatPelapor, namaKorban, jenisKelKorban, alamatKorban, namaTerlapor, alamatTerlapor,
-    jenisKelTerlapor;
+    jenisKelTerlapor, tvLokasi, tvWaktu, tvMO, tvKerugian, tvBox;
     private String tahun, nolp, perkembanganx;
     private Button btnEdit;
     private Toolbar toolbar;
+    ImageButton arrow, arowKorban, arowTerlapor;
+    LinearLayout hiddenView, hiddenKorban, hiddenTerlapor;
+    CardView cardView, cvKorban, cvTerlapor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +55,7 @@ public class DetailDataActivity extends AppCompatActivity {
         nolp   = bundle.getString("nolp");
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Detail LP");
+        getSupportActionBar().setTitle("");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -54,6 +63,45 @@ public class DetailDataActivity extends AppCompatActivity {
         }
 
         inisiasi();
+
+        arrow.setOnClickListener(view -> {
+            if (hiddenView.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.setVisibility(View.GONE);
+                arrow.setImageResource(R.drawable.ic_spinner);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.setVisibility(View.VISIBLE);
+                arrow.setImageResource(R.drawable.ic_spinner_up);
+            }
+        });
+
+        arowKorban.setOnClickListener(view -> {
+            if (hiddenView.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cvKorban, new AutoTransition());
+                hiddenView.setVisibility(View.GONE);
+                arrow.setImageResource(R.drawable.ic_spinner);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cvKorban, new AutoTransition());
+                hiddenView.setVisibility(View.VISIBLE);
+                arrow.setImageResource(R.drawable.ic_spinner_up);
+            }
+        });
+
+        arowTerlapor.setOnClickListener(view -> {
+            if (hiddenView.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cvTerlapor, new AutoTransition());
+                hiddenView.setVisibility(View.GONE);
+                arrow.setImageResource(R.drawable.ic_spinner);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cvTerlapor, new AutoTransition());
+                hiddenView.setVisibility(View.VISIBLE);
+                arrow.setImageResource(R.drawable.ic_spinner_up);
+            }
+        });
     }
 
     //button back toolbar
@@ -63,7 +111,6 @@ public class DetailDataActivity extends AppCompatActivity {
             finish();
         return super.onOptionsItemSelected(item);
     }
-
 
     private void inisiasi(){
         noLp = findViewById(R.id.tv_ddlp);
@@ -81,7 +128,20 @@ public class DetailDataActivity extends AppCompatActivity {
         alamatTerlapor = findViewById(R.id.tv_ddalamatterlapor);
         jenisKelTerlapor = findViewById(R.id.tv_ddjeniskelterlapor);
         btnEdit = findViewById(R.id.btn_editLP);
-
+        cardView = findViewById(R.id.base_cardview);
+        arrow = findViewById(R.id.arrow_button);
+        hiddenView = findViewById(R.id.hidden_view);
+        cvKorban = findViewById(R.id.base_cardviewkorban);
+        cvTerlapor = findViewById(R.id.base_cardviewterlapor);
+        arowKorban = findViewById(R.id.arrow_buttonkorban);
+        arowTerlapor = findViewById(R.id.arrow_buttonterlapor);
+        hiddenKorban = findViewById(R.id.hidden_viewkorban);
+        hiddenTerlapor = findViewById(R.id.hidden_viewterlapor);
+        tvBox = findViewById(R.id.tv_ddbox);
+        tvKerugian = findViewById(R.id.tv_ddkerugian);
+        tvLokasi = findViewById(R.id.tv_ddlokasi);
+        tvWaktu = findViewById(R.id.tv_ddwaktu);
+        tvMO = findViewById(R.id.tv_ddMo);
 
         btnEdit.setOnClickListener(view -> {
             Intent intent = new Intent(this, EditPerkembanganActivity.class);
@@ -117,6 +177,12 @@ public class DetailDataActivity extends AppCompatActivity {
                         String namaTerlaporx = jsonObject.optString("NamaT");
                         String alamatTerlaporx = jsonObject.optString("AlamatT");
                         String JenisKelaminTerlaporx = jsonObject.optString("KelaminT");
+                        String Mox = jsonObject.optString("mo");
+                        String kerugianX = jsonObject.optString("kerugian");
+                        String waktuX = jsonObject.optString("waktuKejadian");
+                        String lokasiX = jsonObject.optString("lokasi");
+                        String boxX = jsonObject.optString("Box");
+
                         if (nolp.equals(noLpx)){
                             noLp.setText(noLpx);
                             perkembangan.setText(perkembanganx);
@@ -130,6 +196,11 @@ public class DetailDataActivity extends AppCompatActivity {
                             namaTerlapor.setText(namaTerlaporx);
                             jenisKelTerlapor.setText(JenisKelaminTerlaporx);
                             alamatTerlapor.setText(alamatTerlaporx);
+                            tvMO.setText(Mox);
+                            tvKerugian.setText(kerugianX);
+                            tvLokasi.setText(lokasiX);
+                            tvWaktu.setText(waktuX);
+                            tvBox.setText(boxX);
                         }
 
                     }
