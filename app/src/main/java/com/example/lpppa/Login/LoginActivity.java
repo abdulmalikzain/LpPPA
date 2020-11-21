@@ -92,8 +92,6 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent1);
                             finish();
 
-                        }else{
-
                         }
                     }
                 } catch (JSONException e) {

@@ -1,24 +1,17 @@
 package com.example.lpppa.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import de.hdodenhof.circleimageview.CircleImageView;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.lpppa.R;
-import com.example.lpppa.adapter.AdapterPenyidik;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
-import com.example.lpppa.models.Penyidik;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -26,6 +19,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailPenyidikActivity extends AppCompatActivity {
 
@@ -49,10 +52,11 @@ public class DetailPenyidikActivity extends AppCompatActivity {
         btnEdit = findViewById(R.id.btn_editPenyidik);
 
         Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
         nrp  = bundle.getString("nrp");
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Penyidik");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Penyidik");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -90,7 +94,7 @@ public class DetailPenyidikActivity extends AppCompatActivity {
                         String nama   = jsonObject.optString("nama");
                         String pangkat = jsonObject.optString("pangkat");
                         String jabatan = jsonObject.optString("jabatan");
-                        String noTelp = jsonObject.optString("noTelp");
+                        String noTelp = jsonObject.optString("noTelpon");
                         String foto = jsonObject.optString("image");
                         String urlImagedefault = "https://drive.google.com/uc?export=view&id=1x2a7NJnvUZUFdXOeLb_jP0UM0GbdahIF";
                         if (nrp.equals(nrpx)){
@@ -117,4 +121,42 @@ public class DetailPenyidikActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
+
+//    private void DialogForm() {
+//        AlertDialog.Builder dialog;
+//        dialog = new AlertDialog.Builder(DetailPenyidikActivity.this);
+//        LayoutInflater inflater = getLayoutInflater();
+//        View dialogView = inflater.inflate(R.layout.form_data, null);
+//        dialog.setView(dialogView);
+//        dialog.setCancelable(true);
+//        dialog.setIcon(R.mipmap.ic_launcher);
+//        dialog.setTitle("Form Biodata");
+//
+//        txt_nama    = dialogView.findViewById(R.id.txt_nama);
+//
+//        dialog.setPositiveButton("SUBMIT", new DialogInterface.OnClickListener() {
+//
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                nama    = txt_nama.getText().toString();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+//
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 }

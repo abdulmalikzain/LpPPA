@@ -10,9 +10,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
@@ -35,6 +37,7 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
     private List<Penyidik> penyidiks;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
+    private LinearLayout layout;
     int count = 0;
 
     @Override
@@ -43,6 +46,7 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
         setContentView(R.layout.activity_penyidik);
         mActionToolbar = findViewById(R.id.toolbar_penyidik);
         swipeRefreshLayout = findViewById(R.id.swipe_penyidik);
+        layout = findViewById(R.id.ll_tambahpenyidik);
 
         setSupportActionBar(mActionToolbar);
         getSupportActionBar().setTitle("Penyidik");
@@ -64,8 +68,13 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
         swipeRefreshLayout.post(() -> {
             swipeRefreshLayout.setRefreshing(true);
             getData();
-        }
+            }
         );
+
+        layout.setOnClickListener(view -> {
+            Intent intent = new Intent(this, TambahPenyidikActivity.class);
+            startActivity(intent);
+        });
     }
 
     //button back toolbar

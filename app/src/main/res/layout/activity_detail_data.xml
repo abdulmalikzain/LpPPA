@@ -63,7 +63,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nested"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -137,19 +138,17 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:visibility="gone"
+                        android:layout_marginBottom="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:layout_margin="5dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nama"
+                                android:textStyle="bold"
                                 android:id="@+id/tv_ddnamapelapor"
                                 android:textColor="@color/fontBlackEnable"
                                 android:layout_marginStart="10dp"/>
@@ -165,9 +164,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Alamat"
                                 android:id="@+id/tv_ddalamatpelapor"
-                                android:textColor="@color/fontBlackEnable"
                                 android:layout_marginStart="10dp"/>
-                        </LinearLayout>
+
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -189,7 +187,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/base_cardview"
+                    app:layout_constraintBottom_toBottomOf="@+id/base_cardviewkorban"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.511"
                     tools:layout_editor_absoluteX="-55dp">
@@ -238,20 +236,18 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:visibility="gone"
+                        android:layout_marginBottom="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/fixed_layoutKorban">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nama"
                                 android:id="@+id/tv_ddnamakorban"
+                                android:textStyle="bold"
                                 android:textColor="@color/fontBlackEnable"
                                 android:layout_marginStart="10dp"/>
                             <TextView
@@ -266,9 +262,8 @@
                                 android:layout_height="wrap_content"
                                 android:text="Alamat"
                                 android:id="@+id/tv_ddalamatkorban"
-                                android:textColor="@color/fontBlackEnable"
                                 android:layout_marginStart="10dp"/>
-                        </LinearLayout>
+
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -290,7 +285,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@+id/base_cardview"
+                    app:layout_constraintBottom_toBottomOf="@+id/base_cardviewterlapor"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.511"
                     tools:layout_editor_absoluteX="-55dp">
@@ -336,21 +331,18 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:visibility="gone"
+                        android:layout_marginBottom="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/fixed_layoutterlapor">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginBottom="8dp"
-                            android:layout_marginTop="5dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nama"
                                 android:id="@+id/tv_ddnamaterlapor"
+                                android:textStyle="bold"
                                 android:textColor="@color/fontBlackEnable"
                                 android:layout_marginStart="10dp"/>
                             <TextView
@@ -365,16 +357,15 @@
                                 android:layout_height="wrap_content"
                                 android:text="Alamat"
                                 android:id="@+id/tv_ddalamatterlapor"
-                                android:textColor="@color/fontBlackEnable"
                                 android:layout_marginStart="10dp"/>
-                        </LinearLayout>
+
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_margin="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -424,38 +415,28 @@
                             android:layout_marginStart="5dp"
                             android:textColor="@color/fontBlackEnable"/>
                     </LinearLayout>
-                    <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Modus Operandi"/>
+                            android:text="Modus Operandi"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"/>
                         <TextView
                             android:id="@+id/tv_ddMo"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="5dp"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="5dp">
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginTop="10dp"
                             android:text="Kerugian"/>
                         <TextView
                             android:id="@+id/tv_ddkerugian"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:layout_marginStart="5dp"/>
-                    </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -469,18 +450,41 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_margin="10dp">
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Pasal"
-                        android:textColor="@color/fontBlackEnable"
-                        android:id="@+id/tv_ddpasal"/>
-                    <TextView
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pasal"
+                            android:textStyle="bold"
+                            android:textColor="@color/fontBlackEnable"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/fontBlackEnable"
+                            android:id="@+id/tv_ddpasal"/>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Box"
-                        android:textColor="@color/fontBlackEnable"
-                        android:id="@+id/tv_ddbox"/>
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Box"
+                            android:textStyle="bold"
+                            android:textColor="@color/fontBlackEnable"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:textColor="@color/fontBlackEnable"
+                            android:id="@+id/tv_ddbox"/>
+                    </LinearLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -496,32 +500,45 @@
                         android:layout_width="40dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
+                        android:layout_marginStart="10dp"
                         android:src="@drawable/icon_menupenyidik"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="Penyidik"
+                        android:layout_marginStart="10dp"
                         android:textColor="@color/fontBlackEnable"
                         android:textStyle="bold"
                         android:id="@+id/tv_ddpenyidik"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/custom_button"
-                android:layout_gravity="center"
-                android:text="E d i t"
-                android:textAllCaps="false"
-                android:textSize="8pt"
-                android:textStyle="bold"
-                android:id="@+id/btn_editLP"
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_margin="10dp"/>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        app:layout_anchorGravity="bottom"
+        app:layout_anchor="@id/nested"
+        android:layout_height="100dp"
+        android:background="@color/White"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/custom_button_warna"
+            android:text="E d i t"
+            android:textAllCaps="false"
+            android:layout_centerInParent="true"
+            android:textSize="9pt"
+            android:textStyle="bold"
+            android:id="@+id/btn_editLP"
+            android:textColor="@color/White"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"/>
+    </RelativeLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

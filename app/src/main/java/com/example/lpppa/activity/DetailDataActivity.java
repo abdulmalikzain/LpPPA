@@ -62,57 +62,6 @@ public class DetailDataActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        inisiasi();
-
-        arrow.setOnClickListener(view -> {
-            if (hiddenView.getVisibility() == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                hiddenView.setVisibility(View.GONE);
-                arrow.setImageResource(R.drawable.ic_spinner);
-            }
-            else {
-                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
-                hiddenView.setVisibility(View.VISIBLE);
-                arrow.setImageResource(R.drawable.ic_spinner_up);
-            }
-        });
-
-        arowKorban.setOnClickListener(view -> {
-            if (hiddenView.getVisibility() == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(cvKorban, new AutoTransition());
-                hiddenView.setVisibility(View.GONE);
-                arrow.setImageResource(R.drawable.ic_spinner);
-            }
-            else {
-                TransitionManager.beginDelayedTransition(cvKorban, new AutoTransition());
-                hiddenView.setVisibility(View.VISIBLE);
-                arrow.setImageResource(R.drawable.ic_spinner_up);
-            }
-        });
-
-        arowTerlapor.setOnClickListener(view -> {
-            if (hiddenView.getVisibility() == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(cvTerlapor, new AutoTransition());
-                hiddenView.setVisibility(View.GONE);
-                arrow.setImageResource(R.drawable.ic_spinner);
-            }
-            else {
-                TransitionManager.beginDelayedTransition(cvTerlapor, new AutoTransition());
-                hiddenView.setVisibility(View.VISIBLE);
-                arrow.setImageResource(R.drawable.ic_spinner_up);
-            }
-        });
-    }
-
-    //button back toolbar
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()== android.R.id.home)
-            finish();
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void inisiasi(){
         noLp = findViewById(R.id.tv_ddlp);
         perkembangan = findViewById(R.id.tv_ddperkembangan);
         tanggal = findViewById(R.id.tv_ddtanggal);
@@ -142,6 +91,59 @@ public class DetailDataActivity extends AppCompatActivity {
         tvLokasi = findViewById(R.id.tv_ddlokasi);
         tvWaktu = findViewById(R.id.tv_ddwaktu);
         tvMO = findViewById(R.id.tv_ddMo);
+
+        inisiasi();
+
+        arrow.setOnClickListener(view -> {
+            if (hiddenView.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.setVisibility(View.GONE);
+                arrow.setImageResource(R.drawable.ic_spinner);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
+                hiddenView.setVisibility(View.VISIBLE);
+                arrow.setImageResource(R.drawable.ic_spinner_up);
+            }
+        });
+
+        arowKorban.setOnClickListener(view -> {
+            if (hiddenKorban.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cvKorban, new AutoTransition());
+                hiddenKorban.setVisibility(View.GONE);
+                arowKorban.setImageResource(R.drawable.ic_spinner);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cvKorban, new AutoTransition());
+                hiddenKorban.setVisibility(View.VISIBLE);
+                arowKorban.setImageResource(R.drawable.ic_spinner_up);
+            }
+        });
+
+        arowTerlapor.setOnClickListener(view -> {
+            if (hiddenTerlapor.getVisibility() == View.VISIBLE) {
+                TransitionManager.beginDelayedTransition(cvTerlapor, new AutoTransition());
+                hiddenTerlapor.setVisibility(View.GONE);
+                arowTerlapor.setImageResource(R.drawable.ic_spinner);
+            }
+            else {
+                TransitionManager.beginDelayedTransition(cvTerlapor, new AutoTransition());
+                hiddenTerlapor.setVisibility(View.VISIBLE);
+                arowTerlapor.setImageResource(R.drawable.ic_spinner_up);
+            }
+        });
+    }
+
+    //button back toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void inisiasi(){
+
 
         btnEdit.setOnClickListener(view -> {
             Intent intent = new Intent(this, EditPerkembanganActivity.class);

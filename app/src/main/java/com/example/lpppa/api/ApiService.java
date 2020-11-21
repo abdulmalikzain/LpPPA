@@ -33,6 +33,16 @@ public interface ApiService {
                                       @Query("pangkat") String pangkat,
                                       @Query("jabatan") String jabatan,
                                       @Query("notelpon") String notelpon);
+    @POST("exec")
+    Call<ResponseBody> tambahPenyidik(@Query("action") String action,
+                                      @Query("sheetName") String sheetName,
+                                      @Query("nrp") String nrp,
+                                      @Query("nama") String nama,
+                                      @Query("password") String password,
+                                      @Query("pangkat") String pangkat,
+                                      @Query("jabatan") String jabatan,
+                                      @Query("notelpon") String notelpon,
+                                      @Query("image") String image);
 
     @FormUrlEncoded
     @POST("exec")

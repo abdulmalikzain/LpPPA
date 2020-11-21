@@ -1,12 +1,5 @@
 package com.example.lpppa.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,7 +8,6 @@ import android.view.View;
 import com.example.lpppa.R;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -30,12 +22,19 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PidanaAnakActivity extends AppCompatActivity {
     private LineChart kekerasanChart;
     private LineChart persetubuhanChart;
     private LineChart cabulChart;
-    private Toolbar toolbar;
     private AVLoadingIndicatorView aviKekerasan;
     private AVLoadingIndicatorView aviPersetubuhan;
     private AVLoadingIndicatorView aviCabul;
@@ -44,7 +43,7 @@ public class PidanaAnakActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pidana_anak);
-        toolbar = findViewById(R.id.toolbar_kekerasananak);
+        Toolbar toolbar = findViewById(R.id.toolbar_kekerasananak);
         kekerasanChart = findViewById(R.id.linechart_kekerasananak);
         persetubuhanChart = findViewById(R.id.linechart_persetubuhananak);
         cabulChart = findViewById(R.id.linechart_cabulanak);
@@ -57,7 +56,7 @@ public class PidanaAnakActivity extends AppCompatActivity {
         cabulChart.setVisibility(View.INVISIBLE);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Grafik");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Grafik");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -81,6 +80,7 @@ public class PidanaAnakActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
+                    assert response.body() != null;
                     JSONObject object = new JSONObject(response.body().string());
                     JSONArray jsonArray  = object.optJSONArray("indexsheet");
 
@@ -88,6 +88,7 @@ public class PidanaAnakActivity extends AppCompatActivity {
                     ArrayList<Entry> persetubuhanValues = new ArrayList<>();
                     ArrayList<Entry> cabulValues = new ArrayList<>();
 
+                    assert jsonArray != null;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         float indexSheet = Float.parseFloat(jsonObject.optString("sheetnames"));
@@ -122,7 +123,9 @@ public class PidanaAnakActivity extends AppCompatActivity {
         aviKekerasan.hide();
         LineDataSet dataSet = new LineDataSet(yValues, "Pasal 76c Jo80 UU PA");
         dataSet.setFillAlpha(110);
-        dataSet.setColor(Color.RED);
+        dataSet.setDrawCircleHole(true);
+        dataSet.setDrawCircles(true);
+        dataSet.setColor(Color.GRAY);
         dataSet.setLineWidth(2f);
         dataSet.setValueTextSize(11f);
         dataSet.setValueTextColor(Color.BLUE);

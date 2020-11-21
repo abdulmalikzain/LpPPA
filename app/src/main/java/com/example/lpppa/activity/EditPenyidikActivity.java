@@ -7,6 +7,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -17,18 +18,14 @@ import com.example.lpppa.api.RetrofitClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
-
 import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
 
 public class EditPenyidikActivity extends AppCompatActivity {
 
     private String nrpx;
     private EditText etNama, etJabatan, etPangkat, etNotelpon;
-    private CardView cvsimpan;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +34,7 @@ public class EditPenyidikActivity extends AppCompatActivity {
         etJabatan = findViewById(R.id.et_editjabatan);
         etNotelpon = findViewById(R.id.et_editnotelpon);
         etPangkat = findViewById(R.id.et_editpangkat);
-        cvsimpan = findViewById(R.id.cv_simpaneditpny);
+        CardView cvsimpan = findViewById(R.id.cv_simpaneditpny);
 
         SharedPreferences sharedpreferences = this.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrpx = (sharedpreferences.getString("nrp", ""));
@@ -53,9 +50,11 @@ public class EditPenyidikActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
+                    assert response.body() != null;
                     JSONObject object = new JSONObject(response.body().string());
                     JSONArray jsonArray  = object.optJSONArray("penyidik");
 
+                    assert jsonArray != null;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String nrp = jsonObject.optString("nrp");
@@ -72,9 +71,7 @@ public class EditPenyidikActivity extends AppCompatActivity {
                         }
 
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -93,6 +90,8 @@ public class EditPenyidikActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         Toast.makeText(EditPenyidikActivity.this, "penyidik berhasil di edit", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(EditPenyidikActivity.this, DetailPenyidikActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override

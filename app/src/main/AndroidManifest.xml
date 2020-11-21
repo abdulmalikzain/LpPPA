@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/iconaplikasi"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".menuProfile.EditPhotoActivity"></activity>
+        <activity android:name=".activity.TambahPenyidikActivity"></activity>
+        <activity android:name=".menuProfile.EditPhotoActivity" />
         <activity android:name=".activity.DownloadUUActivity" />
         <activity android:name=".activity.EditPenyidikActivity" />
         <activity android:name=".activity.EditPerkembanganActivity" />
@@ -31,10 +32,10 @@
         </activity>
         <activity android:name=".MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

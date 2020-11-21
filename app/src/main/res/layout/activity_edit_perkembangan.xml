@@ -39,9 +39,12 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="S I M P A N"
-        android:textSize="8pt"
+        android:text="Simpan"
+        android:textStyle="bold"
+        android:textSize="10pt"
+        android:textAllCaps="false"
+        android:textColor="@color/White"
         android:id="@+id/btn_editperkembangan"
-        android:background="@color/colorPrimary"/>
+        android:background="@drawable/custom_button_warna"/>
 
 </LinearLayout>
