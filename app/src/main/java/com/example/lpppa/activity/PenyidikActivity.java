@@ -1,23 +1,11 @@
 package com.example.lpppa.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-
+import com.example.lpppa.MainActivity;
 import com.example.lpppa.R;
 import com.example.lpppa.adapter.AdapterPenyidik;
 import com.example.lpppa.api.ApiService;
@@ -31,6 +19,16 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
     private Toolbar mActionToolbar;
@@ -82,6 +80,8 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()== android.R.id.home)
             finish();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

@@ -1,14 +1,5 @@
 package com.example.lpppa.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -20,11 +11,12 @@ import com.example.lpppa.R;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EditPerkembanganActivity extends AppCompatActivity {
     private String nolp;
@@ -60,8 +52,6 @@ public class EditPerkembanganActivity extends AppCompatActivity {
         tvnolp.setText(nolp);
         editText.setText(perkembangan);
 
-        Toast.makeText(this, "teesss"+tahun+nolp +perkembangan, Toast.LENGTH_SHORT).show();
-
         btnsimpan.setOnClickListener(view -> {updateData();});
     }
 
@@ -70,6 +60,7 @@ public class EditPerkembanganActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()== android.R.id.home)
             finish();
+
         return super.onOptionsItemSelected(item);
     }
 

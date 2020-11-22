@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="8dp"
+    android:background="?android:attr/selectableItemBackground"
     app:cardElevation="2dp"
     android:layout_margin="8dp">
 
@@ -39,6 +40,12 @@
             android:text="pangkat"
             android:layout_gravity="center"
             android:id="@+id/tv_listhome_pangkat"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:id="@+id/tv_listhome_nrp"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

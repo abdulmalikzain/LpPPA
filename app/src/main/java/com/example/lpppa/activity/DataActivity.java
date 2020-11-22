@@ -1,5 +1,24 @@
 package com.example.lpppa.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
+import com.example.lpppa.MainActivity;
+import com.example.lpppa.R;
+import com.example.lpppa.adapter.AdapterData;
+import com.example.lpppa.api.ApiService;
+import com.example.lpppa.api.RetrofitClient;
+import com.example.lpppa.models.ItemList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,25 +28,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
-
-
-import com.example.lpppa.R;
-import com.example.lpppa.adapter.AdapterData;
-import com.example.lpppa.adapter.AdapterListTahun;
-import com.example.lpppa.api.ApiService;
-import com.example.lpppa.api.RetrofitClient;
-import com.example.lpppa.models.ItemList;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DataActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
@@ -78,6 +78,8 @@ public class DataActivity extends AppCompatActivity implements SwipeRefreshLayou
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()== android.R.id.home)
             finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

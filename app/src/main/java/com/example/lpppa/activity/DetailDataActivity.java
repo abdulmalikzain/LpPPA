@@ -1,5 +1,25 @@
 package com.example.lpppa.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.example.lpppa.MainActivity;
+import com.example.lpppa.R;
+import com.example.lpppa.api.ApiService;
+import com.example.lpppa.api.RetrofitClient;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
@@ -9,29 +29,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.lpppa.R;
-import com.example.lpppa.adapter.AdapterData;
-import com.example.lpppa.api.ApiService;
-import com.example.lpppa.api.RetrofitClient;
-import com.example.lpppa.models.ItemList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class DetailDataActivity extends AppCompatActivity {
     private TextView noLp, perkembangan, tanggal, uu, penyidik, namaPelapor, jenisKelPelapor,
@@ -139,6 +136,8 @@ public class DetailDataActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()== android.R.id.home)
             finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 

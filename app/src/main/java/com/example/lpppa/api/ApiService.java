@@ -50,4 +50,10 @@ public interface ApiService {
                                       @Field("nrp") String id,
                                         @Field("nama") String nama,
                                         @Field("image") String image);
+
+
+    @POST("exec")
+    Call<ResponseBody> hapusPenyidik(@Query("action") String action,
+                                        @Query("sheetName") String sheetName,
+                                        @Query("nrp") String nrp);
 }

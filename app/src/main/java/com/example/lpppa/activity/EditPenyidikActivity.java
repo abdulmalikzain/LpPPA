@@ -48,9 +48,9 @@ public class EditPenyidikActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        SharedPreferences sharedpreferences = this.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
-        nrpx = (sharedpreferences.getString("nrp", ""));
-
+        Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
+        nrpx  = bundle.getString("nrp");
         getData();
 
         cvsimpan.setOnClickListener(view -> {editPenyidik();});
@@ -61,6 +61,7 @@ public class EditPenyidikActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()== android.R.id.home)
             finish();
+
         return super.onOptionsItemSelected(item);
     }
 

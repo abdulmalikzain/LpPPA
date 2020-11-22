@@ -44,7 +44,7 @@ public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidi
         Penyidik penyidik = my_penyidik.get(position);
         holder.tvPangkat.setText(penyidik.getPangkat());
         holder.tvPenyidik.setText(penyidik.getNama());
-
+        holder.tvNrp.setText(penyidik.getNrp());
             Picasso.get()
                     .load(penyidik.getFoto())
                     .error(R.drawable.user_police)
@@ -68,6 +68,7 @@ public class AdapterHomePenyidik extends RecyclerView.Adapter<AdapterHomePenyidi
             tvPenyidik  = itemView.findViewById(R.id.tv_listhome_nama);
             imageView = itemView.findViewById(R.id.iv_listhome_penyidik);
             tvPangkat  = itemView.findViewById(R.id.tv_listhome_pangkat);
+            tvNrp = itemView.findViewById(R.id.tv_listhome_nrp);
             LinearLayout llItemPenyidik = itemView.findViewById(R.id.ll_listhome_penyidik);
             llItemPenyidik.setOnClickListener(v -> {
                 post = getAdapterPosition();

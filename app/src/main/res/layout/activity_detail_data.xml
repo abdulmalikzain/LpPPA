@@ -63,13 +63,13 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/nested"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <androidx.cardview.widget.CardView
                 android:id="@+id/base_cardview"
@@ -108,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:background="@color/White"
+                            android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_spinner"
                             app:layout_constraintBottom_toBottomOf="@id/fixed_layout"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -208,8 +208,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:background="@color/White"
                             android:src="@drawable/ic_spinner"
+                            android:background="?android:attr/selectableItemBackground"
                             app:layout_constraintBottom_toBottomOf="@id/fixed_layoutKorban"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.956"
@@ -304,7 +304,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="15dp"
-                            android:background="@color/White"
+                            android:background="?android:attr/selectableItemBackground"
                             android:src="@drawable/ic_spinner"
                             app:layout_constraintBottom_toBottomOf="@id/fixed_layoutterlapor"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -365,7 +365,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_margin="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -490,7 +491,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -498,9 +499,10 @@
                     android:orientation="horizontal">
                     <ImageView
                         android:layout_width="40dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
                         android:src="@drawable/icon_menupenyidik"/>
                     <TextView
                         android:layout_width="match_parent"
@@ -513,28 +515,25 @@
                         android:id="@+id/tv_ddpenyidik"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:layout_anchorGravity="bottom|center"
-        android:foregroundGravity="bottom"
-        android:layout_gravity="bottom|end"
-        android:overScrollMode="ifContentScrolls"
+        android:overScrollMode="always"
         app:layout_anchor="@id/nested">
         <androidx.cardview.widget.CardView
             android:layout_width="fill_parent"
             android:layout_height="100dp"
             android:background="@color/White"
-            app:cardElevation="5dp">
+            android:layout_marginTop="5dp"
+            app:cardElevation="8dp">
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:background="@drawable/custom_button_warna"
                 android:text="E d i t"
                 android:textAllCaps="false"

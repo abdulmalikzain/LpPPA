@@ -70,6 +70,7 @@
                 <ImageView
                     android:layout_width="55dp"
                     android:layout_height="55dp"
+                    android:background="?android:attr/selectableItemBackground"
                     android:src="@drawable/icon_menulp"/>
                 <TextView
                     android:layout_marginTop="5dp"
@@ -88,6 +89,7 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/icon_menulimpah"/>
                     <TextView
                         android:layout_marginTop="5dp"
@@ -106,6 +108,7 @@
                     android:layout_height="wrap_content">
                     <ImageView
                         android:layout_width="55dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:layout_height="55dp"
                         android:src="@drawable/icon_menuaduan"/>
                     <TextView
@@ -128,6 +131,7 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/icon_menuuud" />
 
                     <TextView
@@ -155,6 +159,7 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/icon_menupenyidik"/>
                     <TextView
                         android:layout_marginTop="5dp"
@@ -173,6 +178,7 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/icon_menukdrt"/>
                     <TextView
                         android:layout_marginTop="5dp"
@@ -192,6 +198,7 @@
                     <ImageView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
+                        android:background="?android:attr/selectableItemBackground"
                         android:src="@drawable/icon_menuanak"/>
                     <TextView
                         android:layout_marginTop="5dp"
@@ -227,6 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lihat Semua"
+                        android:background="?android:attr/selectableItemBackground"
                         android:textColor="@color/colorThree"
                         android:layout_gravity="end"/>
                 </LinearLayout>

@@ -140,6 +140,7 @@ public class HomeFragment extends Fragment {
                         }
 
                         Penyidik penyidik = new Penyidik();
+                        penyidik.setNrp(nrpx);
                         penyidik.setNama(nama);
                         penyidik.setPangkat(pangkat);
                         penyidik.setFoto(foto);
