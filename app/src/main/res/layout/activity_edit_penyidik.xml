@@ -26,38 +26,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Pangkat"
+            android:layout_marginTop="10dp"
             android:id="@+id/et_editpangkat"
             android:backgroundTint="@color/colorPrimaryDark"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Jabatan"
+            android:layout_marginTop="10dp"
             android:id="@+id/et_editjabatan"
             android:backgroundTint="@color/colorPrimaryDark"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="No Telpon"
+            android:layout_marginTop="10dp"
             android:id="@+id/et_editnotelpon"
             android:backgroundTint="@color/colorPrimaryDark"/>
-        <androidx.cardview.widget.CardView
+        <Button
             android:layout_width="350dp"
-            android:layout_height="50dp"
-            app:cardCornerRadius="20dp"
-            android:layout_marginTop="10dp"
-            app:cardElevation="3dp"
-            android:id="@+id/cv_simpaneditpny"
-            app:cardBackgroundColor="@color/colorPrimaryDark"
-            android:layout_gravity="center">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Simpan"
-                android:textSize="9pt"
-                android:textStyle="bold"
-                android:textColor="@color/White"
-                android:layout_gravity="center"/>
-        </androidx.cardview.widget.CardView>
+            android:layout_height="60dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/btn_simpaneditpny"
+            android:background="@drawable/custom_button_warna"
+            android:layout_gravity="center"
+            android:textColor="@color/White"
+            android:textStyle="bold"
+            android:textSize="9pt"
+            android:textAllCaps="false"
+            android:text="Simpan">
+
+        </Button>
     </LinearLayout>
 
 

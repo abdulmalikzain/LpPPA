@@ -516,29 +516,36 @@
 
 
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
     <RelativeLayout
-        android:layout_width="fill_parent"
-        app:layout_anchorGravity="bottom"
-        app:layout_anchor="@id/nested"
-        android:layout_height="100dp"
-        android:background="@color/White"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/custom_button_warna"
-            android:text="E d i t"
-            android:textAllCaps="false"
-            android:layout_centerInParent="true"
-            android:textSize="9pt"
-            android:textStyle="bold"
-            android:id="@+id/btn_editLP"
-            android:textColor="@color/White"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="10dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_anchorGravity="bottom|center"
+        android:foregroundGravity="bottom"
+        android:layout_gravity="bottom|end"
+        android:overScrollMode="ifContentScrolls"
+        app:layout_anchor="@id/nested">
+        <androidx.cardview.widget.CardView
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:background="@color/White"
+            app:cardElevation="5dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@drawable/custom_button_warna"
+                android:text="E d i t"
+                android:textAllCaps="false"
+                android:layout_gravity="center"
+                android:textSize="9pt"
+                android:textStyle="bold"
+                android:id="@+id/btn_editLP"
+                android:textColor="@color/White"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.example.lpppa.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -10,6 +11,8 @@ import retrofit2.Response;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.lpppa.R;
@@ -34,7 +37,16 @@ public class EditPenyidikActivity extends AppCompatActivity {
         etJabatan = findViewById(R.id.et_editjabatan);
         etNotelpon = findViewById(R.id.et_editnotelpon);
         etPangkat = findViewById(R.id.et_editpangkat);
-        CardView cvsimpan = findViewById(R.id.cv_simpaneditpny);
+        Button cvsimpan = findViewById(R.id.btn_simpaneditpny);
+        Toolbar toolbar= findViewById(R.id.toolbar_editpenyidik);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Edit Penyidik");
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         SharedPreferences sharedpreferences = this.getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrpx = (sharedpreferences.getString("nrp", ""));
@@ -42,6 +54,14 @@ public class EditPenyidikActivity extends AppCompatActivity {
         getData();
 
         cvsimpan.setOnClickListener(view -> {editPenyidik();});
+    }
+
+    //button back toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void getData() {
