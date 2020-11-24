@@ -4,14 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.lpppa.MainActivity;
 import com.example.lpppa.R;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
@@ -24,8 +27,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -58,10 +63,20 @@ public class TambahPenyidikActivity extends AppCompatActivity {
         Penyidik = findViewById(R.id.rb_tp_penyidik);
         Banum = findViewById(R.id.rb_tp_banum);
         etNotelpon = findViewById(R.id.et_tp_notelpon);
-        CardView tambah = findViewById(R.id.cv_simpantambahpny);
+        Button tambah = findViewById(R.id.btn_simpantambahpny);
+        Toolbar mActionToolbar = findViewById(R.id.toolbar_tambahpenyidik);
+
+        setSupportActionBar(mActionToolbar);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Tambah Penyidik");
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, strings);
+
         spin.setAdapter(adapter);
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -79,74 +94,59 @@ public class TambahPenyidikActivity extends AppCompatActivity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Menambahkan Anggota");
-        tambah.setOnClickListener(view -> {
-            getPenyidik();
 
+        tambah.setOnClickListener(view -> {
+            cariNrp();
         });
 
 
     }
 
-    private void getPenyidik(){
-        ApiService mApiService = RetrofitClient.getRetroPenyidik();
-        mApiService.getPenyidik("read","penyidik").enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try {
+    //button back toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()== android.R.id.home)
+            finish();
+        Intent intent = new Intent(this, PenyidikActivity.class);
+        startActivity(intent);
+        return super.onOptionsItemSelected(item);
+    }
 
-                    JSONObject object = new JSONObject(response.body().string());
-                    JSONArray jsonArray  = object.optJSONArray("penyidik");
+    private void cariNrp(){
+        ApiService mApiService = RetrofitClient.cariRetroNrpoPenyidik();
+        mApiService.cariNrpPenyidik("cariNrp","penyidik",etNrp.getText().toString())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
 
-                    ArrayList<String> items = new ArrayList<>();
+                            JSONObject object = new JSONObject(response.body().string());
+                            String hasil = object.optString("hasil");
+                            if (hasil.equals("yes")){
+                                etNrp.setError("Penyidik sudah ada");
+                            }else {
+                                if (etNrp.getText().toString().length() == 0) {
+                                    etNrp.setError("NRP tidak boleh kosong");
+                                } else if (etNama.getText().toString().length() == 0) {
+                                    etNama.setError("Nama tidak boleh kosong");
+                                } else {
+                                    pDialog.show();
+                                    tambahPenyidik();
+                                }
+                            }
 
-                    assert jsonArray != null;
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String nrpx = jsonObject.optString("nrp");
-
-
-                        if (etNrp.getText().toString().equals(nrpx) ) {
-                            etNrp.setError("Penyidik sudah ada");
-
-                        }else {
-                            items.add(nrpx);
+                        } catch (JSONException | IOException e) {
+                            e.printStackTrace();
                         }
 
-                    }cobanrp(items);
-                } catch (JSONException | IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(TambahPenyidikActivity.this, "masukk", Toast.LENGTH_SHORT).show();
-                }
-            }
+                    }
 
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-            }
-        });
-
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    }
+                });
     }
 
-    private void cobanrp(ArrayList <String> list){
-        for (int i = 0; i < list.size(); i++) {
-            if (etNrp.getText().toString().equals(list.get(i))) {
-//                Toast.makeText(TambahPenyidikActivity.this, "Penyidik sudah terdaftar",
-//                        Toast.LENGTH_SHORT).show();
-//                etNrp.setError("Penyidik sudah ada");
-
-            } else {
-                if (etNrp.getText().toString().length() == 0) {
-                    etNrp.setError("NRP tidak boleh kosong");
-                } else if (etNama.getText().toString().length() == 0) {
-                    etNama.setError("Username diperlukan!");
-                } else {
-                    pDialog.show();
-                    tambahPenyidik();
-                }break;
-            }break;
-
-        }
-
-    }
 
     public void RadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
@@ -192,6 +192,8 @@ public class TambahPenyidikActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 
 //    private void dropdown(ArrayList<String> items){
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);

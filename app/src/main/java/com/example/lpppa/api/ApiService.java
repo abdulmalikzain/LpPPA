@@ -56,4 +56,13 @@ public interface ApiService {
     Call<ResponseBody> hapusPenyidik(@Query("action") String action,
                                         @Query("sheetName") String sheetName,
                                         @Query("nrp") String nrp);
+    @POST("exec")
+    Call<ResponseBody> cariNrpPenyidik(@Query("action") String action,
+                                     @Query("sheetName") String sheetName,
+                                     @Query("nrp") String nrp);
+
+    @POST("exec")
+    Call<ResponseBody> cariNomor(@Query("action") String action,
+                                       @Query("sheetName") String sheetName,
+                                       @Query("Nomor") String nrp);
 }

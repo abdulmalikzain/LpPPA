@@ -36,7 +36,9 @@ public class TambahLPFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tambah_lp, container, false);
+        View view = inflater.inflate(R.layout.fragment_tambah_lp, container, false);
+
+        return view;
     }
 
     private void getPenyidik(){
