@@ -39,7 +39,6 @@ import retrofit2.Response;
 
 public class TambahPenyidikActivity extends AppCompatActivity {
 
-
     private String[] strings = {
             "AKBP", "AKP", "IPTU", "IPDA", "AIPTU", "AIPDA", "BRIPKA", "BRIGPOL", "BRIPTU",
             "BRIPDA"
@@ -89,7 +88,6 @@ public class TambahPenyidikActivity extends AppCompatActivity {
 
             }
         });
-
 
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
@@ -147,7 +145,6 @@ public class TambahPenyidikActivity extends AppCompatActivity {
                 });
     }
 
-
     public void RadioButtonClicked(View view) {
         boolean checked = ((RadioButton) view).isChecked();
         switch(view.getId()) {
@@ -194,18 +191,4 @@ public class TambahPenyidikActivity extends AppCompatActivity {
     }
 
 
-
-//    private void dropdown(ArrayList<String> items){
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spin.setAdapter(adapter);
-//        spin.setOnItemSelectedListener(this);
-//    }
-
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        getPenyidik();
-//    }
 }

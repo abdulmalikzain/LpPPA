@@ -64,5 +64,14 @@ public interface ApiService {
     @POST("exec")
     Call<ResponseBody> cariNomor(@Query("action") String action,
                                        @Query("sheetName") String sheetName,
-                                       @Query("Nomor") String nrp);
+                                       @Query("Nomor") String nomor);
+
+    @POST("exec")
+    Call<ResponseBody> tambahLP(@Query("action") String action,
+                                 @Query("sheetName") String sheetName,
+                                 @Query("Nomor") String nomor,
+                                @Query("sheetName") String jenis,
+                                @Query("sheetName") String tahun,
+                                @Query("sheetName") String namaPelapor,
+                                @Query("sheetName") String jenisKelPelapor);
 }

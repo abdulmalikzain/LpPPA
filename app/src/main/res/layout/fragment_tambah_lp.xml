@@ -52,6 +52,27 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="5dp">
+                <Spinner
+                    android:layout_gravity="center"
+                    android:id="@+id/spin_jenis"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <Spinner
+                    android:layout_gravity="center"
+                    android:id="@+id/spin_tahun"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,15 +142,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Laki - laki dewasa"/>
+                    android:onClick="RadioButtonPelapor"
+                    android:text="Laki-laki"/>
                 <RadioButton
                     android:id="@+id/rb_tlp_pdpelapor"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Perempuan dewasa"/>
+                    android:onClick="RadioButtonPelapor"
+                    android:text="Perempuan"/>
             </RadioGroup>
             <EditText
                 android:id="@+id/et_tlp_alamatpelapor"
@@ -151,6 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cb_tlpkorban"
+                    android:onClick="checkBoxKorbansama"
                     android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -169,7 +191,8 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp"/>
             <RadioGroup
-                android:orientation="vertical"
+                android:id="@+id/rg_korban"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -179,29 +202,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Laki-laki dewasa"/>
-                <RadioButton
-                    android:id="@+id/rb_tlp_lakorban"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Laki-laki anak"/>
+                    android:onClick="RadioButtonkorban"
+                    android:text="Laki-laki"/>
                 <RadioButton
                     android:id="@+id/rb_tlp_pdkorban"
-                    android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Perempuan dewasa"/>
-                <RadioButton
-                    android:id="@+id/rb_tlp_pakorban"
                     android:layout_margin="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Perempuan anak"/>
+                    android:onClick="RadioButtonkorban"
+                    android:text="Perempuan"/>
+
             </RadioGroup>
             <EditText
                 android:id="@+id/et_tlp_alamatkorban"
@@ -229,7 +239,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp"/>
             <RadioGroup
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -239,29 +249,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Laki-laki dewasa"/>
-                <RadioButton
-                    android:id="@+id/rb_tlp_laterlapor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Laki-laki anak"/>
+                    android:onClick="RadioButtonterlapor"
+                    android:text="Laki-laki"/>
                 <RadioButton
                     android:id="@+id/rb_tlp_pdterlapor"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Perempuan dewasa"/>
-                <RadioButton
-                    android:id="@+id/rb_tlp_paterlapor"
-                    android:layout_margin="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="RadioButtonClicked"
-                    android:text="Perempuan dewasa"/>
+                    android:onClick="RadioButtonterlapor"
+                    android:text="Perempuan"/>
             </RadioGroup>
             <EditText
                 android:id="@+id/et_tlp_alamatterlapor"
