@@ -68,10 +68,23 @@ public interface ApiService {
 
     @POST("exec")
     Call<ResponseBody> tambahLP(@Query("action") String action,
-                                 @Query("sheetName") String sheetName,
-                                 @Query("Nomor") String nomor,
-                                @Query("sheetName") String jenis,
-                                @Query("sheetName") String tahun,
-                                @Query("sheetName") String namaPelapor,
-                                @Query("sheetName") String jenisKelPelapor);
+                                @Query("sheetName") String sheetName,
+                                @Query("Kategori") String kategori,
+                                @Query("Nomor") String nomor,
+                                @Query("Pasal") String pasal,
+                                @Query("NamaP") String namaP,
+                                @Query("KelaminP") String kelaminP,
+                                @Query("AlamatP") String alamatP,
+                                @Query("NamaK") String namaK,
+                                @Query("KelaminK") String kelaminK,
+                                @Query("AlamatK") String alamatK,
+                                @Query("NamaT") String namaT,
+                                @Query("KelaminT") String kelaminT,
+                                @Query("AlamatT") String alamatT,
+                                @Query("Penyidik") String penyidik,
+                                @Query("Nrp") String Nrp,
+                                @Query("mo") String mo,
+                                @Query("kerugian") String kerugian,
+                                @Query("waktuKejadian") String waktukejadian,
+                                @Query("lokasi") String lokasi);
 }

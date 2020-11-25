@@ -134,6 +134,7 @@
             <RadioGroup
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
+                android:id="@+id/rg_pelapor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp">
@@ -142,14 +143,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonPelapor"
                     android:text="Laki-laki"/>
                 <RadioButton
                     android:id="@+id/rb_tlp_pdpelapor"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="RadioButtonPelapor"
                     android:text="Perempuan"/>
             </RadioGroup>
             <EditText
@@ -202,14 +201,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonkorban"
                     android:text="Laki-laki"/>
                 <RadioButton
                     android:id="@+id/rb_tlp_pdkorban"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonkorban"
                     android:text="Perempuan"/>
 
             </RadioGroup>
@@ -239,6 +236,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp"/>
             <RadioGroup
+                android:id="@+id/rg_terlapor"
                 android:orientation="horizontal"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -249,14 +247,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:onClick="RadioButtonterlapor"
                     android:text="Laki-laki"/>
                 <RadioButton
                     android:id="@+id/rb_tlp_pdterlapor"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="RadioButtonterlapor"
                     android:text="Perempuan"/>
             </RadioGroup>
             <EditText

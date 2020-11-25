@@ -43,24 +43,23 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class TambahLPFragment extends Fragment {
+public class TambahLPFragment extends Fragment  {
 
     ArrayList<String> penyidik = new ArrayList<>();
     ArrayList<String> nrp = new ArrayList<>();
     ArrayList<String> tahun = new ArrayList<>();
+    ArrayList<String> pasal = new ArrayList<>();
     private Spinner spinJenis, spinPasal, spinPenyidik, spintahun;
     private EditText etNomor, etNamaPelapor, etAlamatPelapor, etNamaKorban, etAlamatkorban, etNamaTerlapor,
             etAlamatterlapor, etMO, etLokasi, etWaktu, etKerugian;
     private TextView tvNrp;
-    private RadioButton rbLDPelapor, rbPDPelapor, rbLDKorban, rbPDKorban,
-    rbLDTerlapor, rbPDTerlapor;
     private CheckBox cbKorbansama;
     private String rbpelapor, rbkorban, rbterlapor;
     private String[] jenis = {"LP", "SuratPengaduan","Rekom","LimpahPengaduan"};
     ProgressDialog pDialog;
     private Button btnSimpan;
-    RadioGroup rgKorban;
-    private String jenisBaru, pasalbaru, tahunbaru;
+    RadioGroup rgKorban, rgPelapor, rgTerlapor;
+    private String jenisBaru, pasalbaru, tahunbaru, penyidikbaru;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,17 +83,12 @@ public class TambahLPFragment extends Fragment {
         etKerugian = view.findViewById(R.id.et_tlp_kerugian);
         tvNrp = view.findViewById(R.id.tv_spin_penyidik);
         cbKorbansama = view.findViewById(R.id.cb_tlpkorban);
-        rbLDKorban = view.findViewById(R.id.rb_tlp_ldkorban);
-        rbPDKorban = view.findViewById(R.id.rb_tlp_pdkorban);
-        rbLDTerlapor = view.findViewById(R.id.rb_tlp_ldterlapor);
-        rbPDTerlapor = view.findViewById(R.id.rb_tlp_pdterlapor);
-        rbLDPelapor = view.findViewById(R.id.rb_tlp_ldpelapor);
-        rbPDPelapor = view.findViewById(R.id.rb_tlp_pdpelapor);
         btnSimpan = view.findViewById(R.id.btn_simpantambahlp);
         rgKorban = view.findViewById(R.id.rg_korban);
 
         getPenyidik();
         cariTahun();
+        listPasal();
 
         ///////spin namapenyidik
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
@@ -103,6 +97,7 @@ public class TambahLPFragment extends Fragment {
         spinPenyidik.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                penyidikbaru = adapter.getItem(i);
                 cariNrp(adapter.getItem(i));
             }
             @Override
@@ -113,8 +108,8 @@ public class TambahLPFragment extends Fragment {
         ///////spin jenis
         final ArrayAdapter<String> adapterjenis = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
                 android.R.layout.simple_spinner_item, jenis);
-        spinPenyidik.setAdapter(adapterjenis);
-        spinPenyidik.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinJenis.setAdapter(adapterjenis);
+        spinJenis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 jenisBaru = adapterjenis.getItem(i);
@@ -127,12 +122,27 @@ public class TambahLPFragment extends Fragment {
 
         ///////spin tahun
         final ArrayAdapter<String> adaptertahun = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-                android.R.layout.simple_spinner_item, jenis);
-        spinPenyidik.setAdapter(adaptertahun);
-        spinPenyidik.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                android.R.layout.simple_spinner_item, tahun);
+        spintahun.setAdapter(adaptertahun);
+        spintahun.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 tahunbaru = adaptertahun.getItem(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        ///////spin pasal
+        final ArrayAdapter<String> adapterpasal = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_spinner_item, pasal);
+        spinPasal.setAdapter(adapterpasal);
+        spinPasal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                pasalbaru = adapterpasal.getItem(i);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -254,6 +264,30 @@ public class TambahLPFragment extends Fragment {
                         String indexSheet = jsonObject.optString("sheetnames");
                         tahun.add(indexSheet);
                     }
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
+
+    private void listPasal(){
+        ApiService mApiService = RetrofitClient.getRetroPenyidik();
+        mApiService.getPenyidik("read","listuud").enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body().string());
+                    JSONArray jsonArray  = object.optJSONArray("listpasal");
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String indexSheet = jsonObject.optString("listpasal");
+                        pasal.add(indexSheet);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -304,21 +338,23 @@ public class TambahLPFragment extends Fragment {
     }
 
     private void tambahLP(){
-//        ApiService mApiService = RetrofitClient.updateRetroPenyidik();
-//        mApiService.tambahPenyidik("insert",tahunbaru,etNrp.getText().toString(),etNama.getText().toString(),
-//                "unitidik6",pangkatbaru,userJabatan,etNotelpon.getText().toString())
-//                .enqueue(new Callback<ResponseBody>() {
-//                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        pDialog.hide();
-//                        Toast.makeText(getContext(), "penyidik berhasil di tambah", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    }
-//                });
+        ApiService mApiService = RetrofitClient.getRetroData();
+        mApiService.tambahLP("insert",tahunbaru,jenisBaru,etNomor.getText().toString(),
+                pasalbaru,etNamaPelapor.getText().toString(),rbpelapor,etAlamatPelapor.getText().toString(),
+                etNamaKorban.getText().toString(),rbkorban,etAlamatkorban.getText().toString(),
+                etNamaTerlapor.getText().toString(),rbterlapor,etAlamatterlapor.getText().toString(),
+                penyidikbaru,tvNrp.getText().toString(), etMO.getText().toString(),etKerugian.getText().toString(),
+                etWaktu.getText().toString(),etLokasi.getText().toString())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        pDialog.hide();
+                        Toast.makeText(getContext(), "penyidik berhasil di tambah", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    }
+                });
     }
 
 }
