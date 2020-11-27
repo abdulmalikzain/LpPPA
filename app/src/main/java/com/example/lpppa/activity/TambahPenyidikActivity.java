@@ -127,6 +127,9 @@ public class TambahPenyidikActivity extends AppCompatActivity {
                                     etNrp.setError("NRP tidak boleh kosong");
                                 } else if (etNama.getText().toString().length() == 0) {
                                     etNama.setError("Nama tidak boleh kosong");
+                                } else if (userJabatan.length()==0) {
+                                    Toast.makeText(TambahPenyidikActivity.this,
+                                            "Jabatan tidak boleh kosong", Toast.LENGTH_SHORT).show();
                                 } else {
                                     pDialog.show();
                                     tambahPenyidik();

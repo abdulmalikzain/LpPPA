@@ -52,24 +52,33 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pilih Jenis Laporan dan tahun"
+                android:layout_marginStart="15dp"
+                android:textSize="7pt"
+                android:textColor="@color/BlackPastel"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginEnd="15dp">
                 <Spinner
                     android:layout_gravity="center"
                     android:id="@+id/spin_jenis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
+
                 <Spinner
                     android:layout_gravity="center"
                     android:id="@+id/spin_tahun"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
@@ -171,7 +180,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/cb_tlpkorban"
-                    android:onClick="checkBoxKorbansama"
                     android:layout_gravity="center"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -266,20 +274,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp">
+                <TextView
+                    android:text="Pilih Penyidik"
+                    android:layout_width="match_parent"
+                    android:textSize="7pt"
+                    android:textColor="@color/fontBlackEnable"
+                    android:layout_height="wrap_content" />
                 <Spinner
-                    android:layout_gravity="center"
                     android:id="@+id/spin_penyidik"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:id="@+id/tv_spin_penyidik"
-                    android:visibility="gone"/>
+
             </LinearLayout>
             <EditText
                 android:id="@+id/et_tlp_nrppenyidik"
@@ -293,20 +302,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp">
+                <TextView
+                    android:text="Pilih Pasal"
+                    android:layout_width="match_parent"
+                    android:textSize="7pt"
+                    android:textColor="@color/fontBlackEnable"
+                    android:layout_height="wrap_content" />
                 <Spinner
                     android:layout_gravity="center"
                     android:id="@+id/spin_uud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:id="@+id/tv_spin_uud"
-                    android:visibility="gone"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

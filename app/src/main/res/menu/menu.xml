@@ -4,7 +4,10 @@
         android:id="@+id/item_home"
         android:title="@string/menu_home"
         android:icon="@drawable/home_selector"/>
-
+    <item
+        android:id="@+id/item_tambahlp"
+        android:title="@string/menu_add"
+        android:icon="@drawable/add_selector"/>
     <item
         android:id="@+id/item_search"
         android:title="@string/menu_search"

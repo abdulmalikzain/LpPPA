@@ -3,6 +3,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_search">Search</string>
     <string name="menu_profile">Profile</string>
+    <string name="menu_add">AddLP</string>
     <string name="isi_tentang">Aplikasi LP PPA ini berisi data Laporan Polisi, Rekom, Surat Pengaduan, Limpah Pengaduan
        yang ada di Sat Reskrim Unit VI PPA Polrestabes Semarang yang saat ini dengan versi 1.0. </string>
 

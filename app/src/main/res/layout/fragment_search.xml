@@ -31,36 +31,30 @@
             android:layout_marginTop="-35dp"
             android:text="Pilih Tahun dan Masukkan No LP"/>
         <androidx.cardview.widget.CardView
-            android:layout_width="310dp"
-            android:layout_height="45dp"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="9dp"
             app:cardElevation="8dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-                <EditText
-                    android:layout_width="40dp"
+
+                <Spinner
+                    android:id="@+id/spinner_tahuncari"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Tahun"
-                    android:textSize="6pt"
-                    android:textColor="@color/fontBlackEnable"
-                    android:background="@color/White"
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/ed_tahunpencarian"/>
+                    android:layout_gravity="center"
+                    android:text="Tahun"
+                    android:gravity="center"
+                    android:textColor="@color/fontBlackEnable"/>
                 <ImageView
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/BlackPastel"
+                    android:background="@color/Grey"
                     android:gravity="center"
                     android:layout_margin="5dp"/>
-<!--                <Spinner-->
-<!--                    android:id="@+id/spinner_tahun"-->
-<!--                    android:layout_width="20dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:text="Tahun"-->
-<!--                    android:gravity="center"-->
-<!--                    android:textColor="@color/fontBlackEnable"/>-->
+
                 <EditText
                     android:id="@+id/ed_lpsearch"
                     android:layout_width="0dp"
@@ -77,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:padding="8dp"
                     app:tint="@color/White"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/custom_button_warna"
                     android:src="@drawable/search"
                     android:layout_gravity="center"
                     />
@@ -102,11 +96,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/swipe_pencarian">
-            <androidx.recyclerview.widget.RecyclerView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:id="@+id/rv_hasilsearch"/>
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:id="@+id/rv_hasilsearch"/>
+                <TextView
+                    android:id="@+id/tv_datatdkada"
+                    android:layout_width="230dp"
+                    android:layout_height="wrap_content"
+                    android:text="Data Laporan Polisi tidak ditemukan!"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:textSize="10pt"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

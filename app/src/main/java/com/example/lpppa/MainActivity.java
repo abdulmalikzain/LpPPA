@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.lpppa.menuHome.HomeFragment;
 import com.example.lpppa.menuProfile.ProfileFragment;
 import com.example.lpppa.menuSearch.SearchFragment;
+import com.example.lpppa.menuTambahLP.TambahLPFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -82,6 +83,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.item_profile:
                 fragment = new ProfileFragment();
+                break;
+            case R.id.item_tambahlp:
+                fragment = new TambahLPFragment();
                 break;
         }
         return loadFragment(fragment);

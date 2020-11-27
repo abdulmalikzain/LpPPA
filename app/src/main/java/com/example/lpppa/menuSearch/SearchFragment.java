@@ -14,6 +14,8 @@ import retrofit2.Response;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -31,17 +33,16 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
-    private ImageView ivCari;
-    private TextView tvTahun;
-    private String item;
-    private EditText edNolp, edtahun;
+    private TextView datatdkada;
+    private EditText edNolp;
     private List<ItemList> itemLists;
     private RecyclerView recyclerView;
     private SwipeRefreshLayout refreshLayout;
-
+    private String tahunbaru;
     private Spinner spinner;
 
     @Override
@@ -50,15 +51,17 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        ivCari = view.findViewById(R.id.iv_cari);
+        ImageView ivCari = view.findViewById(R.id.iv_cari);
         edNolp = view.findViewById(R.id.ed_lpsearch);
         recyclerView = view.findViewById(R.id.rv_hasilsearch);
-        edtahun = view.findViewById(R.id.ed_tahunpencarian);
         refreshLayout = view.findViewById(R.id.swipe_pencarian);
+        spinner = view.findViewById(R.id.spinner_tahuncari);
+        datatdkada = view.findViewById(R.id.tv_datatdkada);
+        datatdkada.setVisibility(View.GONE);
 
-//        getTahun();
+        cariTahun();
 
-        ivCari.setOnClickListener(view1 -> {getDataLp();});
+        ivCari.setOnClickListener(view1 -> {cariNomor();});
         itemLists = new ArrayList<>();
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -69,51 +72,87 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
         return view;
     }
 
-
-//    private void getTahun(){
-//        ApiService mApiService = RetrofitClient.getRetroPenyidik();
-//        mApiService.getPenyidik("read","indexsheet").enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                try {
-//                    JSONObject object = new JSONObject(response.body().string());
-//                    JSONArray jsonArray  = object.optJSONArray("indexsheet");
-//
-//                    for (int i = 0; i < jsonArray.length(); i++) {
-//                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-//                        String indexSheet = jsonObject.optString("sheetnames");
-//
-//                        List<String> categories = new ArrayList<>();
-//                        categories.add(indexSheet);
-//
-//                        // Creating adapter for spinner
-//                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
-//                                android.R.layout.simple_spinner_item, categories);
-//                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                        spinner.setAdapter(dataAdapter);
-//
-//                    }
-//                } catch (JSONException | IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-
-    private void getDataLp(){
-        refreshLayout.setRefreshing(true);
-        ApiService mApiService = RetrofitClient.getRetroData();
-        mApiService.getData("read",edtahun.getText().toString()).enqueue(new Callback<ResponseBody>() {
+    private void cariTahun(){
+        ApiService mApiService = RetrofitClient.getRetroPenyidik();
+        mApiService.getPenyidik("read","indexsheet").enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     JSONObject object = new JSONObject(response.body().string());
-                    JSONArray jsonArray  = object.optJSONArray(edtahun.getText().toString());
+                    JSONArray jsonArray  = object.optJSONArray("indexsheet");
+                    ArrayList<String> tahun = new ArrayList<>();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String indexSheet = jsonObject.optString("sheetnames");
+                        tahun.add(indexSheet);
+                    }
+                    tahunxxx(tahun);
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
+    private void tahunxxx(ArrayList<String> tahunx){
+        ///////spin tahun
+        final ArrayAdapter<String> adaptertahun = new ArrayAdapter<>(Objects.requireNonNull(getContext()),
+                android.R.layout.simple_spinner_item, tahunx);
+        spinner.setAdapter(adaptertahun);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tahunbaru = adaptertahun.getItem(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void cariNomor(){
+        ApiService mApiService = RetrofitClient.cariRetroNrpoPenyidik();
+        mApiService.cariNomor("cariNomor",tahunbaru,edNolp.getText().toString())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        try {
+
+                            JSONObject object = new JSONObject(response.body().string());
+                            String hasil = object.optString("hasil");
+                            if (hasil.equals("yes")){
+                                datatdkada.setVisibility(View.GONE);
+                                getDataLp();
+                            }else {
+                                recyclerView.setVisibility(View.GONE);
+                                datatdkada.setVisibility(View.VISIBLE);
+                            }
+
+                        } catch (JSONException | IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    }
+                });
+    }
+
+    private void getDataLp(){
+        refreshLayout.setRefreshing(true);
+        ApiService mApiService = RetrofitClient.getRetroData();
+        mApiService.getData("read",tahunbaru).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body().string());
+                    JSONArray jsonArray  = object.optJSONArray(tahunbaru);
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -132,9 +171,6 @@ public class SearchFragment extends Fragment implements SwipeRefreshLayout.OnRef
                             itemLists.add(list);
                             AdapterData adapterData = new AdapterData(getContext(), itemLists);
                             recyclerView.setAdapter(adapterData);
-                        }else{
-                            Toast.makeText(getContext(), "No LP tidak ditemukan", Toast.LENGTH_SHORT).show();
-                            itemLists.clear();
                         }
                     }
                     refreshLayout.setRefreshing(false);
