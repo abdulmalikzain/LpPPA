@@ -1,8 +1,10 @@
 package com.example.lpppa.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.lpppa.MainActivity;
@@ -19,6 +21,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,12 +33,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
+
 public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
     private Toolbar mActionToolbar;
     private List<Penyidik> penyidiks;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private LinearLayout layout;
+    private String nrp;
     int count = 0;
 
     @Override
@@ -45,14 +51,18 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
         mActionToolbar = findViewById(R.id.toolbar_penyidik);
         swipeRefreshLayout = findViewById(R.id.swipe_penyidik);
         layout = findViewById(R.id.ll_tambahpenyidik);
+        layout.setVisibility(View.GONE);
 
         setSupportActionBar(mActionToolbar);
-        getSupportActionBar().setTitle("Penyidik");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Penyidik");
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        SharedPreferences sharedpreferences = Objects.requireNonNull(this).getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+        nrp = (sharedpreferences.getString("nrp", ""));
 
         recyclerView = findViewById(R.id.rv_penyidik);
         LinearLayoutManager layoutManager
@@ -97,31 +107,30 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        String nrp = jsonObject.optString("nrp");
+                        String nrpx = jsonObject.optString("nrp");
                         String nama   = jsonObject.optString("nama");
                         String pangkat = jsonObject.optString("pangkat");
                         String foto = jsonObject.optString("image");
+                        String jabatan = jsonObject.optString("jabatan");
 
                         Penyidik penyidik = new Penyidik();
                         penyidik.setNama(nama);
                         penyidik.setNrp(nrp);
                         penyidik.setPangkat(pangkat);
                         penyidik.setFoto(foto);
+                        if (nrp.equals(nrpx)){
+                            if (jabatan.equals("Bamin")){
+                                layout.setVisibility(View.VISIBLE);
+                            }
+                        }
 
                         penyidiks.add(penyidik);
                         AdapterPenyidik penyidik1 = new AdapterPenyidik(PenyidikActivity.this, penyidiks);
                         recyclerView.setAdapter(penyidik1);
 
-
-                        if (recyclerView.getAdapter() != null) {
-                            count = recyclerView.getAdapter().getItemCount();
-                        }
-
                     }
                     swipeRefreshLayout.setRefreshing(false);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (JSONException | IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -137,6 +146,5 @@ public class PenyidikActivity extends AppCompatActivity implements SwipeRefreshL
     public void onRefresh() {
         penyidiks.clear();
         getData();
-//        Toast.makeText(this, "total:"+count, Toast.LENGTH_SHORT).show();
     }
 }

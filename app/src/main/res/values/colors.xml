@@ -8,4 +8,6 @@
     <color name="White">#FFFFFF</color>
     <color name="colorThree">#A60000</color>
     <color name="fontBlackEnable">#000000</color>
+    <color name="birupastel">#00BCD4</color>
+    <color name="hijaupastel">#4CAF50</color>
 </resources>

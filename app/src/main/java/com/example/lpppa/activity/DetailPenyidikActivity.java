@@ -1,11 +1,13 @@
 package com.example.lpppa.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +33,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
+
 public class DetailPenyidikActivity extends AppCompatActivity {
 
-    private String nrp;
+    private String nrp, nrpshared;
     private TextView tvNama, tvNrp, tvJabatan, tvPangkat, tvNotelp;
     private CircleImageView civPenyidik;
+    private LinearLayout llbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,11 @@ public class DetailPenyidikActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_detailpenyidik);
         Button btnEdit = findViewById(R.id.btn_editPenyidik);
         Button btnhapus = findViewById(R.id.btn_hapuspenyidik);
+        llbtn = findViewById(R.id.ll_editpenyidik);
+
+        SharedPreferences sharedpreferences = Objects.requireNonNull(this)
+                .getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+        nrpshared = (sharedpreferences.getString("nrp", ""));
 
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
@@ -103,17 +113,17 @@ public class DetailPenyidikActivity extends AppCompatActivity {
                         String jabatan = jsonObject.optString("jabatan");
                         String noTelp = jsonObject.optString("notelpon");
                         String foto = jsonObject.optString("image");
-                        String urlImagedefault = "https://drive.google.com/uc?export=view&id=1x2a7NJnvUZUFdXOeLb_jP0UM0GbdahIF";
                         if (nrp.equals(nrpx)){
                             tvNrp.setText(nrpx);
                             tvPangkat.setText(pangkat);
                             tvJabatan.setText(jabatan);
                             tvNotelp.setText(noTelp);
                             tvNama.setText(nama);
-                            if (foto.equals(urlImagedefault)){
-                                Picasso.get().load(urlImagedefault).error(R.drawable.user_police).into(civPenyidik);
-                            }else {
-                                Picasso.get().load(foto).error(R.drawable.user_police).into(civPenyidik);
+                            Picasso.get().load(foto).error(R.drawable.user_police).into(civPenyidik);
+                        }
+                        if (nrpx.equals(nrpshared)){
+                            if (jabatan.equals("Penyidik")||jabatan.equals("Kanit")||jabatan.equals("Panit")){
+                                llbtn.setVisibility(View.GONE);
                             }
                         }
 

@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:background="@drawable/logo_bar"/>
     </androidx.appcompat.widget.Toolbar>
     <ScrollView
@@ -22,37 +22,205 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/White">
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
+                android:orientation="vertical"
                 android:background="@drawable/bg_home">
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/user_police"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="10dp">
-                    <TextView
-                        android:id="@+id/tv_homepenyidik"
-                        android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/user_police"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Penyidik"/>
-                    <TextView
-                        android:id="@+id/tvhomenrp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12345"/>
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp">
+                        <TextView
+                            android:id="@+id/tv_homepenyidik"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                        <TextView
+                            android:id="@+id/tvhomenrp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
-            </RelativeLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    app:cardBackgroundColor="@color/White"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="2dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="15dp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Perkembangan Kasus tahun"/>
+                            <TextView
+                                android:id="@+id/tv_tahunhome"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="2020"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginBottom="5dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textSize="8pt"
+                                    android:textStyle="bold"
+                                    android:id="@+id/tv_lidikhome"
+                                    android:textColor="@color/colorThree"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Lidik"
+                                    android:textColor="@color/colorThree"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textSize="8pt"
+                                    android:id="@+id/tv_sidikhome"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorThree"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Sidik"
+                                    android:textColor="@color/colorThree"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <TextView
+                                    android:id="@+id/tv_sp2lidhome"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textSize="8pt"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/birupastel"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SP2Lid"
+                                    android:textColor="@color/birupastel"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:id="@+id/tv_sp3home"
+                                    android:textSize="8pt"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/birupastel"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SP3"
+                                    android:textColor="@color/birupastel"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:id="@+id/tv_tahap1home"
+                                    android:textSize="8pt"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/colorPrimaryDark"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tahap1"
+                                    android:textColor="@color/colorPrimaryDark"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:id="@+id/tv_tahap2home"
+                                    android:textSize="8pt"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/hijaupastel"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tahap2"
+                                    android:textColor="@color/hijaupastel"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
             <LinearLayout
                 android:weightSum="4"
                 android:background="@color/White"
@@ -222,12 +390,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:gravity="center"
                     android:layout_margin="10dp">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Penyidik Unit PPA"
                         android:layout_weight="1"
+                        android:textSize="8pt"
                         android:textColor="@color/fontBlackEnable"/>
                     <TextView
                         android:id="@+id/tv_homelihatsemua"
@@ -236,7 +406,7 @@
                         android:text="Lihat Semua"
                         android:background="?android:attr/selectableItemBackground"
                         android:textColor="@color/colorThree"
-                        android:layout_gravity="end"/>
+                        android:layout_gravity="end|center"/>
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"

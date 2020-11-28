@@ -37,6 +37,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -49,6 +50,7 @@ public class HomeFragment extends Fragment {
     private AVLoadingIndicatorView loadingIndicatorView;
     private TextView tvLihatsemua;
     private TextView tvnamaPenyidik;
+    private TextView tvlidik, tvsidik, tvsp2lid, tvsp3, tvtahap1, tvtahap2, tahunini;
     private List<Penyidik> penyidiks;
     private String LP = "LP";
     private String Aduan = "SuratPengaduan";
@@ -75,10 +77,19 @@ public class HomeFragment extends Fragment {
         llLimpah = view1.findViewById(R.id.ll_homelimpah);
         llanak = view1.findViewById(R.id.ll_homeanak);
         llkdrt = view1.findViewById(R.id.ll_homekdrt);
+        tvlidik = view1.findViewById(R.id.tv_lidikhome);
+        tvsidik = view1.findViewById(R.id.tv_sidikhome);
+        tvsp2lid = view1.findViewById(R.id.tv_sp2lidhome);
+        tvsp3 = view1.findViewById(R.id.tv_sp3home);
+        tvtahap1 = view1.findViewById(R.id.tv_tahap1home);
+        tvtahap2 = view1.findViewById(R.id.tv_tahap2home);
+        tahunini = view1.findViewById(R.id.tv_tahunhome);
 
         SharedPreferences sharedpreferences = Objects.requireNonNull(getContext()).getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
         nrp = (sharedpreferences.getString("nrp", ""));
         tvNrp.setText(nrp);
+
+        getTahun();
 
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -149,10 +160,6 @@ public class HomeFragment extends Fragment {
                         AdapterHomePenyidik penyidik1 = new AdapterHomePenyidik(getContext(), penyidiks);
                         Rvpenyidik.setAdapter(penyidik1);
 
-//                        if (recyclerView.getAdapter() != null) {
-//                            count = recyclerView.getAdapter().getItemCount();
-//                        }
-
                     }
                 } catch (JSONException | IOException e) {
                     e.printStackTrace();
@@ -162,6 +169,48 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void getTahun(){
+        Calendar c = Calendar.getInstance();
+        c.get(Calendar.YEAR);
+        tahunini.setText(c.get(Calendar.YEAR));
+
+        ApiService mApiService = RetrofitClient.getRetroPenyidik();
+        mApiService.getPenyidik("read","indexsheet").enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    JSONObject object = new JSONObject(response.body().string());
+                    JSONArray jsonArray  = object.optJSONArray("indexsheet");
+
+                    ArrayList<String> tahun = new ArrayList<>();
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String indexSheet = jsonObject.optString("sheetnames");
+                        String lidik = jsonObject.optString("lidik");
+                        String sidik = jsonObject.optString("sidik");
+                        String sp2lid = jsonObject.optString("sp2lid");
+                        String sp3 = jsonObject.optString("sp3");
+                        String tahap1 = jsonObject.optString("tahap1");
+                        String tahap2 = jsonObject.optString("tahap2");
+                        if (indexSheet.equals(c.get(Calendar.YEAR))){
+                            tvlidik.setText(lidik);
+                            tvsidik.setText(sidik);
+                            tvsp2lid.setText(sp2lid);
+                            tvsp3.setText(sp3);
+                            tvtahap1.setText(sidik);
+                            tvtahap2.setText(tahap2);
+                        }
+                    }
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
             }
         });
     }

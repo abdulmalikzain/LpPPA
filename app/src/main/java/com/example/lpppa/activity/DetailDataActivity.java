@@ -1,6 +1,7 @@
 package com.example.lpppa.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,12 +14,14 @@ import com.example.lpppa.MainActivity;
 import com.example.lpppa.R;
 import com.example.lpppa.api.ApiService;
 import com.example.lpppa.api.RetrofitClient;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,22 +33,28 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
+
 public class DetailDataActivity extends AppCompatActivity {
     private TextView noLp, perkembangan, tanggal, uu, penyidik, namaPelapor, jenisKelPelapor,
     alamatPelapor, namaKorban, jenisKelKorban, alamatKorban, namaTerlapor, alamatTerlapor,
     jenisKelTerlapor, tvLokasi, tvWaktu, tvMO, tvKerugian, tvBox;
-    private String tahun, nolp, perkembanganx;
+    private String tahun, nolp, perkembanganx, nrpshared;
     private Button btnEdit;
     private Toolbar toolbar;
     ImageButton arrow, arowKorban, arowTerlapor;
     LinearLayout hiddenView, hiddenKorban, hiddenTerlapor;
-    CardView cardView, cvKorban, cvTerlapor;
+    CardView cardView, cvKorban, cvTerlapor, cvedit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_data);
         toolbar = findViewById(R.id.toolbar_detaildata);
+
+        SharedPreferences sharedpreferences = Objects.requireNonNull(this)
+                .getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+        nrpshared = (sharedpreferences.getString("nrp", ""));
 
         Bundle bundle = getIntent().getExtras();
         tahun  = bundle.getString("tahun");
@@ -88,8 +97,10 @@ public class DetailDataActivity extends AppCompatActivity {
         tvLokasi = findViewById(R.id.tv_ddlokasi);
         tvWaktu = findViewById(R.id.tv_ddwaktu);
         tvMO = findViewById(R.id.tv_ddMo);
+        cvedit = findViewById(R.id.cv_editPerkembangan);
 
         inisiasi();
+        getPenyidik();
 
         arrow.setOnClickListener(view -> {
             if (hiddenView.getVisibility() == View.VISIBLE) {
@@ -213,6 +224,40 @@ public class DetailDataActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void getPenyidik(){
+        ApiService mApiService = RetrofitClient.getRetroPenyidik();
+        mApiService.getPenyidik("read","penyidik").enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    assert response.body() != null;
+                    JSONObject object = new JSONObject(response.body().string());
+                    JSONArray jsonArray  = object.optJSONArray("penyidik");
+
+                    assert jsonArray != null;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String nrpx = jsonObject.optString("nrp");
+                        String jabatan = jsonObject.optString("jabatan");
+
+                        if (nrpx.equals(nrpshared)){
+                            if (jabatan.equals("Penyidik")||jabatan.equals("Kanit")||jabatan.equals("Panit")){
+                                cvedit.setVisibility(View.GONE);
+                            }
+                        }
+
+                    }
+                } catch (JSONException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
             }
         });
     }

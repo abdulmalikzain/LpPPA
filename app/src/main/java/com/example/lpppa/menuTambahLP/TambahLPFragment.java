@@ -2,6 +2,7 @@ package com.example.lpppa.menuTambahLP;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static android.content.Context.MODE_PRIVATE;
+import static com.example.lpppa.Login.LoginActivity.my_shared_preferences;
+
 
 public class TambahLPFragment extends Fragment  {
 
@@ -54,7 +59,9 @@ public class TambahLPFragment extends Fragment  {
     private String[] jenis = {"LP", "SuratPengaduan","Rekom","LimpahPengaduan"};
     ProgressDialog pDialog;
     RadioGroup rgKorban, rgPelapor, rgTerlapor;
-    private String jenisBaru, pasalbaru, pnydbaru, tahunbaru;
+    private String jenisBaru, pasalbaru, pnydbaru, tahunbaru, nrp;
+    private RelativeLayout rl;
+    private TextView tvPeringatan;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,6 +89,13 @@ public class TambahLPFragment extends Fragment  {
         rgKorban = view.findViewById(R.id.rg_korban);
         rgPelapor = view.findViewById(R.id.rg_pelapor);
         rgTerlapor = view.findViewById(R.id.rg_terlapor);
+        rl = view.findViewById(R.id.rl_tambahlp);
+        tvPeringatan = view.findViewById(R.id.tv_tmbhlpbukanbamin);
+
+
+        SharedPreferences sharedpreferences = Objects.requireNonNull(getContext())
+                .getSharedPreferences(my_shared_preferences, MODE_PRIVATE);
+        nrp = (sharedpreferences.getString("nrp", ""));
 
         getPenyidik();
         cariTahun();
@@ -295,9 +309,17 @@ public class TambahLPFragment extends Fragment  {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String nrpx = jsonObject.optString("nrp");
                         String nama = jsonObject.optString("nama");
+                        String jabatan = jsonObject.optString("jabatan");
 
                         penyidik.add(nama);
                         nrp.add(nrpx);
+
+                        if (nrp.equals(nrpx)){
+                            if (!jabatan.equals("Bamin")){
+                                rl.setVisibility(View.GONE);
+                                tvPeringatan.setVisibility(View.VISIBLE);
+                            }
+                        }
                     }
                     namapenyidik(penyidik,nrp);
                 } catch (JSONException | IOException e) {
